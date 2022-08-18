@@ -23,5 +23,10 @@ def login(request):
             
     return render(request, 'fashion/login.html')
 
+@login_required
 def about(request):
-    pass 
+    return render(request,'fashion/about.html')
+
+
+def test(request):
+    return render(request, "fashion/test.html")

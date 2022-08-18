@@ -19,7 +19,9 @@ from Fashon.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path(r'test/', test, name="test"),
     re_path(r'login/', login, name='loginUrl'),
     re_path(r'home/', home, name="home"),
-    path(r'', home, name="index")
+    path(r'', home, name="index"),
+    path(r'about/', about, name="aboutUrl"),
 ]
