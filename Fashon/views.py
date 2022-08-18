@@ -22,3 +22,6 @@ def login(request):
             return HttpResponse('failure')
             
     return render(request, 'fashion/login.html')
+
+def about(request):
+    pass 
