@@ -1,1 +1,66 @@
 {% extends "fashion/base.html" %}
+{% block navpage %}
+<li><a style="font-size: 23px; color:#FFDCAD; font-weight: bolder;" class="nav-link" href="#">Create Order</a>
+</li>
+<li><a class="nav-link" href="#">Pending Orders</a></li>
+<li><a class="nav-link" href="#">Pending Delivery</a></li>
+<li><a class="nav-link" href="#">My Customers</a></li>
+{% endblock navpage %}
+
+
+{% block page %}
+<div style="margin-top: 12px; height: 850px; background-color: lavender;" class="container">
+    <div style="padding-top: 150px; margin: 0 0 0 280px;" class="container">
+        <div class="container">
+    <h1 style="font-family: 'Poppins', sans-serif;
+  font-size: 40px;
+  font-weight: 600;
+  text-decoration: solid;
+  text-transform: uppercase;
+  letter-spacing: 2px;">Register a new Customer</h1>
+  <button style="background: crimson;
+  border: 0;
+  padding: 15px 60px;
+  margin: 10px 0 0 155px;
+  color: #fff;
+  transition: 0.4s;
+  border-radius: 8px;">Add New Customer</button>
+  </div>
+</div>
+  <br>
+  <br> 
+  <br> 
+  <h3 style="color:darkmagenta; padding-left: 170px;">-----------------------------------&nbsp;&nbsp; OR &nbsp;&nbsp;-------------------------------------</h3>
+<br>
+<br>
+<div style="padding-top: 20px; margin: 0 0 0 280px;" class="container">
+    <div class="container">
+    <h1 style="font-family: 'Poppins', sans-serif;
+    font-size: 40px;
+    font-weight: 600;
+    text-decoration: solid;
+    text-transform: uppercase;
+    letter-spacing: 2px;"> If already our Customer</h1>
+    <form>
+        <div class="input-group" style="width: 50%; height: 50px; margin-top: 20px;">
+            <span class="input-group-text" id="basic-addon1">📞</span>
+            <input style="font-size: 20px;" placeholder="Eg: 8823327820"  type="tel" class="form-control">
+        </div>
+        <label id="check" style="color: darkviolet; padding-top: 4px; display: show;">Check whether customer exists or not.</label>
+        <label id="found" style="color:rgb(0, 167, 111) ; padding-top: 4px; display: none;">The Registered Customer exists, Click Proceed.</label>
+        <label id="notFound" style="color: crimson; padding-top: 4px; display: none;">Sorry, Customer not found.</label>
+    </form>
+    <button style="background:rgb(0, 121, 80);
+    border: 0;
+    padding: 15px 60px;
+    margin: 27px 0 0 155px;
+    color: #fff;
+    transition: 0.4s;
+    border-radius: 8px;
+    display: none;">Proceed to Customer</button>
+  </div>
+</div>
+
+
+</div>
+{% endblock page %}
