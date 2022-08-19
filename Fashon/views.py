@@ -2,13 +2,17 @@ from django.shortcuts import render, redirect, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from .models import *
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import authenticate
-from django.contrib.auth import login as auth_login
+from django.contrib.auth import authenticate, login as auth_login, logout
 
 # Create your views here.
 @login_required
 def home(request):
     return render(request, 'fashion/index.html')
+
+@login_required
+def logoutView(request):
+    logout(request)
+    return HttpResponse('success')
 
 @csrf_exempt
 def login(request):
@@ -20,13 +24,15 @@ def login(request):
             return HttpResponse('success')
         else:
             return HttpResponse('failure')
-            
     return render(request, 'fashion/login.html')
 
 @login_required
-def about(request):
-    return render(request,'fashion/about.html')
+def createOrder(request):
+    return render(request,'fashion/create_order.html')
 
+@login_required
+def customerType(request):
+    return render(request,'fashion/customer_type.html')
 
 def test(request):
     return render(request, "fashion/test.html")
