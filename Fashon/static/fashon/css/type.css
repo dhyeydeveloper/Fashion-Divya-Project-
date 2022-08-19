@@ -1,0 +1,113 @@
+body::before {
+    content: "";
+    position: fixed;
+    background: white url("../img/bg.jpg") top right no-repeat;
+    background-position: initial; 
+    background-size: cover;
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    z-index: -1;
+  }
+
+
+.align-items-center{
+    margin-right: 20px;
+}
+
+.dropdownDiv button{
+    color: crimson
+}
+
+.nav-item {
+    font-size: 15px;
+    color:#fff;
+    margin: 0;
+    padding: 0;
+    font-weight: 700;
+    font-family: "Poppins", sans-serif;
+}
+  
+.navbar ul {
+
+margin: 0;
+padding: 0;
+display: flex;
+list-style: none;
+align-items: center;
+}
+
+.navbar li {
+position: relative;
+}
+
+.navbar li+li {
+margin-left: 30px;
+}
+
+.navbar .dropdown-menu-end a{
+    color: white;
+    pointer-events: none;
+}
+
+.navbar .dropdown-menu-end{
+    display: none;
+}
+
+
+.navbar a,
+.navbar a:focus {
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 0;
+font-family: "Poppins", sans-serif;
+font-size: 19px;
+font-weight: 400;
+color:whitesmoke;
+white-space: nowrap;
+transition: 0.3s;
+}
+
+.navbar a i,
+.navbar a:focus i {
+font-size: 12px;
+line-height: 0;
+margin-left: 5px;
+}
+
+.navbar a:before {
+content: "";
+position: absolute;
+width: 0;
+height: 2px;
+bottom: -4px;
+left: 0;
+background-color:crimson;
+visibility: hidden;
+width: 0px;
+transition: all 0.3s ease-in-out 0s;
+}
+
+.navbar a:hover:before,
+.navbar li:hover>a:before,
+.navbar .active:before {
+visibility: visible;
+width: 40px;
+}
+
+.navbar a:hover,
+.navbar .active,
+.navbar .active:focus,
+.navbar li:hover>a {
+/* color:burlywood; */
+background-image: linear-gradient(to right,#00C6AB ,#00EECD, #C9B4FF);
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        background-clip: text;
+        color: transparent;
+}
+
