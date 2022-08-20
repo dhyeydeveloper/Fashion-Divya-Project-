@@ -1,0 +1,126 @@
+{% extends "fashion/base.html" %}
+{% load static %}
+{% block navpage %}
+<li><a style="font-size: 27px; color:beige; font-weight: bolder; text-shadow: 0 0 8px black" class="nav-link"
+    href="#">Create Order</a>
+</li>
+<li><a class="nav-link" href="#">Pending Orders</a></li>
+<li><a class="nav-link" href="#">Pending Delivery</a></li>
+<li><a class="nav-link" href="#">My Customers</a></li>
+{% endblock navpage %}
+
+
+{% block page %}
+<link rel="stylesheet" href="{% static 'fashon/css/create_order.css' %}">
+
+<div style="margin-top: 12px; height: 850px; background-color: lavender;" class="container">
+    
+    <!-- CREATE ORDER STARTS HERE -->
+    <h2 style="font-family:Georgia ; font-weight: bolder; padding-top: 15px;">CREATE ORDER</h2>
+    <hr style="width: 60%; height: 3px; color: forestgreen;">
+
+    <!-- ============================================== USER DETAILS STARTS HERE ==============================================-->
+    <div>
+    <h2><button style="font-family:auto; height: 50px;background: rgb(82, 0, 16);
+            border: 0;
+            color: whitesmoke;
+            transition: 0.4s;
+            border-radius: 10px; padding: 0 40px 0 40px;">&nbsp;&nbsp;Customer Details &nbsp;&nbsp;</button>
+            <label class="switch">
+                <input id="check" type="checkbox" checked>
+                <span class="slider round"></span>
+            </label>
+        </h2>
+        
+        <div class="container" id="user_details" style="width: 1320px;">
+        <!-- CONTAINER LEFT ITEMS -->
+        <div style="width: 50%; float: left;">
+            <div style="margin: 0 15px 0 15px; width: 90%;">
+                <!-- CUSTOMER NAME FIELD -->
+                <div class="input-group" style="height: 50px;">
+                    <span class="input-group-text" id="basic-addon1">👨‍💼</span>
+                    <input type="text" style="font-size: 20px;" class="form-control" id="name"
+                        placeholder="Enter Customer Name Here" aria-describedby="basic-addon1">
+                </div>
+
+                <!-- DELIEVERY DATE FIELD -->
+                <div class="input-group datepicker" style="margin-top: 20px; height: 47px;">
+                    <span class="input-group-text" id="basic-addon1">📅</span>
+                    <input type="text" style="width: 525px; font-size: 20px;" id="date" name="date"
+                        placeholder=" Enter Final Delivery Date here">
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTAINER RIGHT ITEMS -->
+        <div style="margin-left: 50%; margin-bottom: 40px; height: 100px; width: 45%;">
+            <!-- CUSTOMER PHONENUMBER FIELD -->
+            <div class="input-group" style="height: 50px; margin-top: 20px;">
+                <span class="input-group-text" id="basic-addon1">📞</span>
+                <input type="tel" style="font-size: 21px;" class="form-control" id="phone"
+                    placeholder="Enter Customer Phonenumber here" aria-describedby="basic-addon1">
+            </div>
+
+            <!-- CUSTOMER ADVANCE FIELD -->
+            <div class="input-group" style="height: 50px; margin-top: 20px;">
+                <span class="input-group-text" id="basic-addon1">💸</span>
+                <input type="number" style="font-size: 21px;" class="form-control" id="advance"
+                    placeholder="ADVANCE Paid here Eg: 1000" aria-describedby="basic-addon1">
+            </div>
+        </div>
+        <!-- CONTAINER RIGHT ITEMS ENDS -->
+    </div>
+
+</div>
+    <!-- ============================================== USER DETAILS ENDS HERE ==============================================-->
+
+    
+
+
+<div>
+<h2 style="margin: 20px 0 0 1px;"><button style="font-family:auto; height: 50px;background: rgb(82, 0, 16);
+    border: 0;
+    color: whitesmoke;
+    transition: 0.4s;
+    border-radius: 10px; padding: 0 40px 0 40px;">&nbsp;&nbsp;Top Details &nbsp;&nbsp;</button>
+    <label class="switch">
+        <input id="check" type="checkbox">
+        <span class="slider round"></span>
+    </label>    
+</h2>
+</div>
+
+
+
+
+</div>
+
+
+<!-- DATE PICKER IN JQUERY -->
+<!-- <link href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css" rel="stylesheet"/> -->
+<link href="https://code.jquery.com/ui/1.13.2/themes/pepper-grinder/jquery-ui.css" rel="stylesheet" />
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>
+<script>
+    $(document).ready(function () {
+        var date_input = $('input[name="date"]'); //our date input has the name "date"
+        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+        var options = {
+            format: 'dd/mm/yyyy',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+        };
+        date_input.datepicker(options);
+    })
+</script>
+
+<script src="{% static 'fashon/js/create_order.js' %}"></script>
+<!-- ENDS JQUERY -->
+{% endblock page %}
+
+
+
+
+

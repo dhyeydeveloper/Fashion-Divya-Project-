@@ -26,5 +26,4 @@ urlpatterns = [
     path(r'', home, name="index"),
     path(r'create/', createOrder, name="createUrl"),
     path(r'type/', customerType, name="customerTypeUrl"),
-
 ]

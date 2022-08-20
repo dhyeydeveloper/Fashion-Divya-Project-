@@ -1,6 +1,7 @@
 {% extends "fashion/base.html" %}
+{% load static %}
 {% block navpage %}
-<li><a style="font-size: 23px; color:#FFDCAD; font-weight: bolder;" class="nav-link" href="#">Create Order</a>
+<li><a style="font-size: 27px; color:beige; font-weight: bolder; text-shadow: 0 0 8px black" class="nav-link" href="#">Create Order</a>
 </li>
 <li><a class="nav-link" href="#">Pending Orders</a></li>
 <li><a class="nav-link" href="#">Pending Delivery</a></li>
@@ -18,7 +19,8 @@
   text-decoration: solid;
   text-transform: uppercase;
   letter-spacing: 2px;">Register a new Customer</h1>
-  <button style="background: crimson;
+  <!-- href="{% url 'createUrl' %}" -->
+  <button id="new_order" style="background: crimson;
   border: 0;
   padding: 15px 60px;
   margin: 10px 0 0 155px;
@@ -60,7 +62,7 @@
     display: none;">Proceed to Customer</button>
   </div>
 </div>
-
-
 </div>
+
+<script src="{% static 'fashon/js/type_create.js' %}"></script>
 {% endblock page %}
