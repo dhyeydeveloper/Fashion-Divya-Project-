@@ -1,21 +1,48 @@
-let check = document.getElementById('check');
-let user_details = document.getElementById('user_details');
-let details_check = 0;
+// Hiding Customer Details Starts
+let userArrow = document.getElementById('userArrow');
+let userDetails = document.getElementById('userDetails');
 
-check.addEventListener('click',(e)=>{
-    if (details_check == 0){
-        check = "off"
-        details_check = 1;
-    }
-    else{
-        check = "on"
-        details_check = 0;
-    }
+let topArrow = document.getElementById('topArrow');
+let topGrandParent = document.getElementById('topGrandParent');
 
-    if(check === "off"){
-        user_details.style.display = "none";
+function showHideUser(){
+    if (userArrow.className.includes('active') == false){
+        userDetails.style.display = "none"
     }
-    else if(check === "on")
-        user_details.style.display = "block";
+    else if (userArrow.className.includes('active') == true){
+        userDetails.style.display = "block"
+        topArrow.classList.remove('active')
+        topGrandParent.style.display = "none"
     }
-)
+}
+// Hiding Customer Details Ends
+
+
+// Hiding All Top Details Starts
+function showHideTop(){
+
+    if (topArrow.className.includes('active') == false){
+        topGrandParent.style.display = "none"
+    }
+    else if (topArrow.className.includes('active') == true){
+        topGrandParent.style.display = "block"
+        userArrow.classList.remove('active')
+        userDetails.style.display = "none"
+    }
+}
+
+// Toggling Options Insert Starts
+function showHideInsert() {
+    let insertOption = document.getElementById('insertOption');
+    let arrow = document.getElementById('arrow');
+    if (arrow.className.includes('active') == false){
+        insertOption.style.display = "none"
+    }
+    else if (arrow.className.includes('active') == true){
+        insertOption.style.display = "block"
+    }
+}
+// Toggling Options Insert Ends
+// Hiding All Top Details Ends
+
+
