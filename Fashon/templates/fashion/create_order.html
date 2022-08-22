@@ -73,7 +73,6 @@
 <!-- ============================================== USER DETAILS ENDS HERE ==============================================-->
 
 
-
 <!-- ============================================== TOP DETAILS STARTS HERE ==============================================-->
     <div>
         <h2 style="margin: 20px 0 0 1px;"><button style="font-family:auto; height: 50px;background: rgb(82, 0, 16);
@@ -109,7 +108,7 @@
             <div id="parent2" class="container" style="font-family:sans-serif; margin-bottom: -12px;">
                 <div class="child2"><button class="shrink-border">Arm Hole</button>
                 </div>
-                <div class="child2" style="margin: 0 -9px 0 22px;"><button class="shrink-border">Waist</button>
+                <div class="child2" style="margin: 0 -14px 0 30px;"><button class="shrink-border">Waist</button>
                 </div>
                 <div class="child2" style="margin: 0 -1px 0 0;"><button class="shrink-border">Length</button>
                 </div>
@@ -117,7 +116,7 @@
                 </div>
                 <div class="child2"><button class="shrink-border">Sleeve-R</button>
                 </div>
-                <div class="child2" style="margin: 0 -2px 0 18px;"><button class="shrink-border">Neck-F</button>
+                <div class="child2" style="margin: 0 -3px 0 11px;"><button class="shrink-border">Neck-F</button>
                 </div>
                 <div class="child2"><button class="shrink-border">Neck-B</button>
                 </div>
@@ -231,23 +230,122 @@
         </h3>
     </div>
     </div>
-</div>
-
-<!-- DIV HIDE ON TOGGLE BUTTON ENDS-->
-</div>
 <!-- ============================================== TOP DETAILS ENDS HERE ==============================================-->
 
+
+<!-- ============================================== BOTTOM DETAILS STARTS HERE ==============================================-->
+<div>
+    <h2 style="margin: 20px 0 0 1px;"><button style="font-family:auto; height: 50px;background: rgb(82, 0, 16);
+border: 0;
+color: whitesmoke;
+transition: 0.4s;
+border-radius: 10px; padding: 0 40px 0 40px;">&nbsp;&nbsp;Bottom Details &nbsp;&nbsp;</button>
+        <div class="child3 all-arrow-down" style="margin-left: 10px;" id="topArrow"
+            onclick="this.classList.toggle('active');  showHideBottom();"></div>
+        </h2>
+        <!-- DIV HIDE ON TOGGLE BUTTON -->
+        <div id="bottomGrandParent">
+            <h2>
+        <!-- ALWAYS SAME ITEMS (NO OPTIONS AVAILABLE) -->
+        <div id="parent" class="container" style="font-family:sans-serif;">
+            <div class="child" style="padding-left: 200px;"><span>Bottom Waist:</span>
+                <input style="width: 90px; height: 34px; font-size: 30px;" type="number" id="waist" name="waist">
+            </div>
+            <div class="child" style="margin-left: 400px;"><span>Heap Round:</span>
+                <input style="width: 90px; height: 34px; font-size: 30px;" type="number" id="bottom_hround"
+                    name="bottom_hround">
+            </div>
+        </h2>
+    <!-- HAVE DIFFERENT OPTIONS HEADING(OPTIONS AVAILABLE) -->
+    <h3>
+        <div id="parent2" class="container" style="font-family:sans-serif; margin-bottom: -12px;">
+            <div class="child2"><button style="padding: 11px 52px;" class="shrink-border">Mori</button>
+            </div>
+            <div class="child2" style="margin: 0 -9px 0 22px;"><button style="padding: 11px 52px;" class="shrink-border">Length</button>
+            </div>
+            <div class="child2 arrow-down" style="margin-left: 80px;" id="arrow"
+                onclick="this.classList.toggle('active');  showHideInsert();"></div>
+        </div>
+
+        <!-- All Options Input div () -->
+        <div id="insertOption" style="display: block">
+            <!--KURTI VALUE INPUT TAG -->
+            <div id="insertParent">
+                <div class="kurtiChild">
+                    <h2>Kurti</h2>
+                </div>
+                <div class="kurtiChild" style="margin: 0 -20px 0 34px;"><input
+                        style="width: 70px; height: 34px; font-size: 30px;" type="number" id="armHole"
+                        name="armHole">
+                </div>
+                <div class="kurtiChild" style="margin: 0 -9px 0 22px;"><input
+                        style="width: 70px; height: 34px; font-size: 30px;" type="number" id="armHole"
+                        name="armHole">
+                </div>
+            </div>
+
+            <!--GOWN VALUE INPUT TAG -->
+            <div id="insertParent">
+                <div class="gownChild">
+                    <h2>Gown</h2>
+                </div>
+                <div class="gownChild" style="margin: 0 -20px 0 34px;"><input
+                        style="width: 70px; height: 34px; font-size: 30px;" type="number" id="armHole"
+                        name="armHole">
+                </div>
+                <div class="gownChild" style="margin: 0 -9px 0 22px;"><input
+                        style="width: 70px; height: 34px; font-size: 30px;" type="number" id="armHole"
+                        name="armHole">
+                </div>
+            </div>
+
+            <!--BLOUSE VALUE INPUT TAG -->
+            <div id="insertParent">
+                <div class="blouseChild">
+                    <h2>Blouse</h2>
+                </div>
+                <div class="blouseChild" style="margin: 0 -20px 0 34px;"><input
+                        style="width: 70px; height: 34px; font-size: 30px;" type="number" id="armHole"
+                        name="armHole">
+                </div>
+                <div class="blouseChild" style="margin: 0 -9px 0 22px;"><input
+                        style="width: 70px; height: 34px; font-size: 30px;" type="number" id="armHole"
+                        name="armHole">
+                </div>
+
+            </div>
+
+            <!--BLOUSE VALUE INPUT TAG -->
+            <div id="insertParent">
+                <div class="blouseChild">
+                    <h2>Blouse</h2>
+                </div>
+                <div class="blouseChild" style="margin: 0 -20px 0 34px;"><input
+                        style="width: 70px; height: 34px; font-size: 30px;" type="number" id="armHole"
+                        name="armHole">
+                </div>
+                <div class="blouseChild" style="margin: 0 -9px 0 22px;"><input
+                        style="width: 70px; height: 34px; font-size: 30px;" type="number" id="armHole"
+                        name="armHole">
+                </div>
+
+            </div>
+
+    </h3>
+</div>
+</div>
+
+<!-- ============================================== BOTTOM DETAILS ENDS HERE ==============================================-->
 
 
 </div>
 
 
 <!-- DATE PICKER IN JQUERY -->
-<!-- <link href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css" rel="stylesheet"/> -->
 <link href="https://code.jquery.com/ui/1.13.2/themes/pepper-grinder/jquery-ui.css" rel="stylesheet" />
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>
+<script rel="preload" src="https://code.jquery.com/jquery-3.6.0.min.js" type="text/javascript"></script>
+<script rel="preload" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>
 <script>
     $(document).ready(function () {
         var date_input = $('input[name="date"]'); //our date input has the name "date"

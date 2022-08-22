@@ -15,17 +15,6 @@
   <link href="{% static 'fashon/img/favicon.png' %}" rel="icon">
   <link href="{% static 'fashon/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href="{% static 'fashon/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-  <link href="{% static 'fashon/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
-  <link href="{% static 'fashon/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
-  <link href="{% static 'fashon/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
-  <link href="{% static 'fashon/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
-  <link href="{% static 'fashon/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
-
   <!-- Template Main CSS File -->
   <link href="{% static 'fashon/css/style.css' %}" rel="stylesheet">
 
@@ -43,10 +32,8 @@
   <header id="header">
 
     <!-- <div class="container" style="margin: 20px;"> -->
-      <div class="container">
+      <div class="container" style="margin-left: 200px;">
       <h1><a style="color:#FFF8F2; font-size: 100px;" href="{% url 'home' %}">Fashon Divya</a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="mr-auto"><img src="{% static 'fashon/img/logo.png' %}" alt="" class="img-fluid"></a> -->
       <h2 style="color:beige; font-size:24px;
       ">I'm a passionate <span style="color:azure;">Fashion Designer</span> from India</h2>
 
@@ -65,30 +52,17 @@
       <!-- <h4><a href="#contact">Pending</a></h4> -->
 
       <div class="social-links">
-        <a href="#" class="twitter"><i style="color:black;" class="bi bi-twitter"></i></a>
-        <a href="#" class="facebook"><i style="color:black" class="bi bi-facebook"></i></a>
-        <a href="#" class="instagram"><i style="color:black" class="bi bi-instagram"></i></a>
+        <a href="#" class="twitter"><img style="height: 30px;" src="{% static 'fashon/img/instagram.png' %}" alt="Instagram Link"></a>
+        <a href="#" class="facebook"><img style="height: 30px;" src="{% static 'fashon/img/twitter.png' %}" alt="Twitter Link"></a>
+        <a href="#" class="instagram"><img style="height: 30px;" src="{% static 'fashon/img/facebook.png' %}" alt="FaceBook Link"></a>
       </div>
 
     </div>
   </header><!-- End Header -->
 
   <div class="credits">
-    <!-- All the links in the footer should remain intact. -->
-    <!-- You can delete the links only if you purchased the pro version. -->
-    <!-- Licensing information: https://bootstrapmade.com/license/ -->
-    <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/personal-free-resume-bootstrap-template/ -->
     {% comment %} Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> {% endcomment %}
   </div>
-
-  <!-- Vendor JS Files -->
-  <script src="{% static 'fashon/vendor/purecounter/purecounter_vanilla.js' %}"></script>
-  <script src="{% static 'fashon/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-  <script src="{% static 'fashon/vendor/glightbox/js/glightbox.min.js' %}"></script>
-  <script src="{% static 'fashon/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
-  <script src="{% static 'fashon/vendor/swiper/swiper-bundle.min.js' %}"></script>
-  <script src="{% static 'fashon/vendor/waypoints/noframework.waypoints.js' %}"></script>
-  <script src="{% static 'fashon/vendor/php-email-form/validate.js' %}"></script>
 
   <!-- Template Main JS File -->
   <script src="{% static 'fashon/js/main.js' %}"></script>
@@ -96,3 +70,6 @@
 </body>
 
 </html>
+
+
+
