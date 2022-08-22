@@ -240,11 +240,11 @@ border: 0;
 color: whitesmoke;
 transition: 0.4s;
 border-radius: 10px; padding: 0 40px 0 40px;">&nbsp;&nbsp;Bottom Details &nbsp;&nbsp;</button>
-        <div class="child3 all-arrow-down" style="margin-left: 10px;" id="topArrow"
+        <div class="child3 all-arrow-down" style="margin-left: 10px;" id="bottomArrow"
             onclick="this.classList.toggle('active');  showHideBottom();"></div>
         </h2>
         <!-- DIV HIDE ON TOGGLE BUTTON -->
-        <div id="bottomGrandParent">
+        <div id="bottomGrandParent" style="display: none;">
             <h2>
         <!-- ALWAYS SAME ITEMS (NO OPTIONS AVAILABLE) -->
         <div id="parent" class="container" style="font-family:sans-serif;">
@@ -257,82 +257,82 @@ border-radius: 10px; padding: 0 40px 0 40px;">&nbsp;&nbsp;Bottom Details &nbsp;&
             </div>
         </h2>
     <!-- HAVE DIFFERENT OPTIONS HEADING(OPTIONS AVAILABLE) -->
-    <h3>
-        <div id="parent2" class="container" style="font-family:sans-serif; margin-bottom: -12px;">
-            <div class="child2"><button style="padding: 11px 52px;" class="shrink-border">Mori</button>
+    <h3 style="margin-left: 196px;">
+        <div id="parent3" class="container" style="font-family:sans-serif; margin-bottom: -12px;">
+            <div class="child4"><button style="padding: 11px 63px;" class="shrink-border">Mori</button>
             </div>
-            <div class="child2" style="margin: 0 -9px 0 22px;"><button style="padding: 11px 52px;" class="shrink-border">Length</button>
+            <div class="child4" style="margin: 0 -9px 0 22px;"><button style="padding: 11px 55px;" class="shrink-border">Length</button>
             </div>
-            <div class="child2 arrow-down" style="margin-left: 80px;" id="arrow"
-                onclick="this.classList.toggle('active');  showHideInsert();"></div>
+            <div class="child4 arrow-down" style="margin-left: 137px;" id="bottomInsertArrow"
+                onclick="this.classList.toggle('active');  showHideBottomInsert();"></div>
         </div>
 
         <!-- All Options Input div () -->
-        <div id="insertOption" style="display: block">
-            <!--KURTI VALUE INPUT TAG -->
+        <div id="insertBottomOption" style="display: none">
+            <!--SALWAR VALUE INPUT TAG -->
             <div id="insertParent">
-                <div class="kurtiChild">
-                    <h2>Kurti</h2>
+                <div class="salwarChild">
+                    <h2>Salwar</h2>
                 </div>
-                <div class="kurtiChild" style="margin: 0 -20px 0 34px;"><input
+                <div class="salwarChild" style="margin: 0 100px 0 112px;"><input
                         style="width: 70px; height: 34px; font-size: 30px;" type="number" id="armHole"
                         name="armHole">
                 </div>
-                <div class="kurtiChild" style="margin: 0 -9px 0 22px;"><input
+                <div class="salwarChild" style="margin: 0 -9px 0 22px;"><input
                         style="width: 70px; height: 34px; font-size: 30px;" type="number" id="armHole"
                         name="armHole">
                 </div>
             </div>
 
-            <!--GOWN VALUE INPUT TAG -->
+            <!--PANT VALUE INPUT TAG -->
             <div id="insertParent">
-                <div class="gownChild">
-                    <h2>Gown</h2>
+                <div class="pantChild">
+                    <h2>Pant</h2>
                 </div>
-                <div class="gownChild" style="margin: 0 -20px 0 34px;"><input
+                <div class="pantChild" style="margin: 0 100px 0 112px;"><input
                         style="width: 70px; height: 34px; font-size: 30px;" type="number" id="armHole"
                         name="armHole">
                 </div>
-                <div class="gownChild" style="margin: 0 -9px 0 22px;"><input
+                <div class="pantChild" style="margin: 0 -9px 0 22px;"><input
                         style="width: 70px; height: 34px; font-size: 30px;" type="number" id="armHole"
                         name="armHole">
                 </div>
             </div>
 
-            <!--BLOUSE VALUE INPUT TAG -->
+            <!--PLAZO VALUE INPUT TAG -->
             <div id="insertParent">
-                <div class="blouseChild">
-                    <h2>Blouse</h2>
+                <div class="plazoChild">
+                    <h2>Plazo</h2>
                 </div>
-                <div class="blouseChild" style="margin: 0 -20px 0 34px;"><input
+                <div class="plazoChild" style="margin: 0 100px 0 112px;"><input
                         style="width: 70px; height: 34px; font-size: 30px;" type="number" id="armHole"
                         name="armHole">
                 </div>
-                <div class="blouseChild" style="margin: 0 -9px 0 22px;"><input
+                <div class="plazoChild" style="margin: 0 -9px 0 22px;"><input
                         style="width: 70px; height: 34px; font-size: 30px;" type="number" id="armHole"
                         name="armHole">
                 </div>
 
             </div>
 
-            <!--BLOUSE VALUE INPUT TAG -->
+            <!--CHANIYA VALUE INPUT TAG -->
             <div id="insertParent">
-                <div class="blouseChild">
-                    <h2>Blouse</h2>
+                <div class="chaniyaChild">
+                    <h2>Chaniya</h2>
                 </div>
-                <div class="blouseChild" style="margin: 0 -20px 0 34px;"><input
+                <div class="chaniyaChild" style="margin: 0 100px 0 112px;"><input
                         style="width: 70px; height: 34px; font-size: 30px;" type="number" id="armHole"
                         name="armHole">
                 </div>
-                <div class="blouseChild" style="margin: 0 -9px 0 22px;"><input
+                <div class="chaniyaChild" style="margin: 0 -9px 0 22px;"><input
                         style="width: 70px; height: 34px; font-size: 30px;" type="number" id="armHole"
                         name="armHole">
                 </div>
 
             </div>
+        </div>
 
     </h3>
-</div>
 </div>
 
 <!-- ============================================== BOTTOM DETAILS ENDS HERE ==============================================-->
@@ -360,6 +360,6 @@ border-radius: 10px; padding: 0 40px 0 40px;">&nbsp;&nbsp;Bottom Details &nbsp;&
     })
 </script>
 
-<script src="{% static 'fashon/js/create_order.js' %}"></script>
+<script src="{% static 'fashon/js/order_styling.js' %}"></script>
 <!-- ENDS JQUERY -->
 {% endblock page %}

@@ -221,3 +221,124 @@ padding: 11px 17px;
   }
 
 /* DOWN ARROW FOR LISTING OPTIONS INPUT ENDS */
+
+
+
+/* TOP ELEMENTS IN ONE LINE STARTS FOR PARENT 2 */
+#parent3 {
+    width: 100%;
+    height: 75px;
+    white-space: nowrap;
+    overflow-x: auto;
+    margin-left: 120px;
+}
+
+.child4 {
+    display: inline-block;
+    margin-left: 40px;
+}
+
+/* TOP ELEMENTS IN ONE LINE STARTS FOR PARENT 2 ENDS*/
+
+/* BUTTON DESIGNING FOR BOTTOM STARTS */
+
+#parent3 button {
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  }
+  
+#parent3 button {
+position: relative;
+border: 1px solid;
+font-size: 20px;
+background-color:bisque ;
+outline: none;
+border-radius: 23px;
+margin: 0 19px;
+padding: 11px 17px;
+/* border: 3px solid transparent; */
+}
+ 
+/* BUTTON DESIGNING FOR BOTTOM STARTS */
+
+
+/* EDITING FROM HERE */
+/* TOP ELEMENTS IN ONE LINE STARTS FOR PARENT 2 */
+#insertParent {
+  width: 100%;
+  height: 75px;
+  white-space: nowrap;
+  overflow-x: auto;
+  margin-left: 10px;
+}
+
+/* FOR SALWAR */
+.salwarChild {
+  display: inline-block;
+  width: 10%;
+  margin-left: 5px;
+}
+
+.salwarChild h2{
+
+  color: whitesmoke;
+  background: linear-gradient(to right,#001f0f, #009456, #00c468, #01fd88);
+  margin-right: -681px;
+  padding-left: 20px;
+  height: 55px;
+  padding-top: 8px;
+}
+
+/* FOR PANT */
+.pantChild {
+  display: inline-block;
+  width: 10%;
+  margin-left: 5px;
+}
+
+.pantChild h2{
+
+  color: whitesmoke;
+  background: linear-gradient(to right, #001244, #002ead, #0447ff, #18aaff);
+  margin-right: -681px;
+  padding-left: 20px;
+  height: 55px;
+  padding-top: 8px;
+}
+
+
+/* FOR Plazo */
+.plazoChild {
+  display: inline-block;
+  width: 10%;
+  margin-left: 5px;
+}
+
+.plazoChild h2{
+
+  color: whitesmoke;
+  background: linear-gradient(to right, #491b00, #833400, #d15604, #ff8b3d);
+  margin-right: -681px;
+  padding-left: 20px;
+  height: 55px;
+  padding-top: 8px;
+}
+
+/* FOR Chaniya */
+.chaniyaChild {
+  display: inline-block;
+  width: 10%;
+  margin-left: 5px;
+}
+
+.chaniyaChild h2{
+
+  color: whitesmoke;
+  background: linear-gradient(to right, #260049, #330091, #4a00d3, #744eff);
+  margin-right: -681px;
+  padding-left: 20px;
+  height: 55px;
+  padding-top: 8px;
+}
+
+/* TOP ELEMENTS IN ONE LINE STARTS FOR PARENT 2 ENDS*/
