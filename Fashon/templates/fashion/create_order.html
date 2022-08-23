@@ -37,14 +37,14 @@
                     <!-- CUSTOMER NAME FIELD -->
                     <div class="input-group" style="height: 50px;">
                         <span class="input-group-text" id="basic-addon1">👨‍💼</span>
-                        <input type="text" style="font-size: 20px;" class="form-control" id="name"
+                        <input type="text" style="font-size: 20px;" class="form-control" id="userName"
                             placeholder="Enter Customer Name Here" aria-describedby="basic-addon1">
                     </div>
 
                     <!-- DELIEVERY DATE FIELD -->
                     <div class="input-group datepicker" style="margin-top: 20px; height: 47px;">
                         <span class="input-group-text" id="basic-addon1">📅</span>
-                        <input type="text" style="width: 525px; font-size: 20px;" id="date" name="date"
+                        <input type="text" style="width: 525px; font-size: 20px;" id="userDeliveryDate" name="date"
                             placeholder=" Enter Final Delivery Date here">
                     </div>
                 </div>
@@ -55,14 +55,14 @@
                 <!-- CUSTOMER PHONENUMBER FIELD -->
                 <div class="input-group" style="height: 50px; margin-top: 20px;">
                     <span class="input-group-text" id="basic-addon1">📞</span>
-                    <input type="tel" style="font-size: 21px;" class="form-control" id="phone"
+                    <input type="tel" style="font-size: 21px;" class="form-control" id="userPhone"
                         placeholder="Enter Customer Phonenumber here" aria-describedby="basic-addon1">
                 </div>
 
                 <!-- CUSTOMER ADVANCE FIELD -->
                 <div class="input-group" style="height: 50px; margin-top: 20px;">
                     <span class="input-group-text" id="basic-addon1">💸</span>
-                    <input type="number" style="font-size: 21px;" class="form-control" id="advance"
+                    <input type="number" style="font-size: 21px;" class="form-control" id="userAdvance"
                         placeholder="ADVANCE Paid here Eg: 1000" aria-describedby="basic-addon1">
                 </div>
             </div>
@@ -89,17 +89,17 @@
             <!-- ALWAYS SAME ITEMS (NO OPTIONS AVAILABLE) -->
             <div id="parent" class="container" style="font-family:sans-serif;">
                 <div class="child"><span>Chest 1:</span>
-                    <input style="width: 90px; height: 34px; font-size: 30px;" type="number" id="chest1" name="chest1">
+                    <input style="width: 90px; height: 34px; font-size: 30px;" type="number" id="topChest1" name="chest1">
                 </div>
                 <div class="child"><span>Chest 2:</span>
-                    <input style="width: 90px; height: 34px; font-size: 30px;" type="number" id="chest2" name="chest2">
+                    <input style="width: 90px; height: 34px; font-size: 30px;" type="number" id="topChest2" name="chest2">
                 </div>
                 <div class="child"><span>Shoulder:</span>
-                    <input style="width: 90px; height: 34px; font-size: 30px;" type="number" id="shoulder"
+                    <input style="width: 90px; height: 34px; font-size: 30px;" type="number" id="topShoulder"
                         name="shoulder">
                 </div>
                 <div class="child" style="padding-left: 0px;"><span>Heap Round:</span>
-                    <input style="width: 90px; height: 34px; font-size: 30px;" type="number" id="top_hround"
+                    <input style="width: 90px; height: 34px; font-size: 30px;" type="number" id="topHeapRound"
                         name="top_hround">
                 </div>
             </h2>
@@ -132,30 +132,30 @@
                         <h2>Kurti</h2>
                     </div>
                     <div class="kurtiChild" style="margin: 0 -20px 0 34px;"><input
-                            style="width: 70px; height: 38px; font-size: 26px;" type="number" id="armHole"
-                            name="armHole">
+                            style="width: 70px; height: 38px; font-size: 26px;" type="number" id="topKurtiArmHole"
+                        >
                     </div>
                     <div class="kurtiChild" style="margin: 0 -9px 0 22px;"><input
-                            style="width: 70px; height: 38px; font-size: 26px;" type="number" id="armHole"
-                            name="armHole">
+                            style="width: 70px; height: 38px; font-size: 26px;" type="number" id="topKurtiWaist"
+                        >
                     </div>
                     <div class="kurtiChild" style="margin: 0 -1px 0 0;"><input
-                            style="width: 70px; height: 38px; font-size: 26px;" type="number" id="armHole"
-                            name="armHole">
+                            style="width: 70px; height: 38px; font-size: 26px;" type="number" id="topKurtiLength"
+                        >
                     </div>
                     <div class="kurtiChild" style="margin-right: 7px;"><input
-                            style="width: 70px; height: 38px; font-size: 26px;" type="number" id="armHole"
-                            name="armHole">
+                            style="width: 70px; height: 38px; font-size: 26px;" type="number" id="topKurtiSleeveL"
+                        >
                     </div>
                     <div class="kurtiChild"><input style="width: 70px; height: 38px; font-size: 26px;" type="number"
-                            id="armHole" name="armHole">
+                            id="topKurtiSleeveR">
                     </div>
                     <div class="kurtiChild" style="margin: 0 -10px 0 4px;"><input
-                            style="width: 70px; height: 38px; font-size: 26px;" type="number" id="armHole"
-                            name="armHole">
+                            style="width: 70px; height: 38px; font-size: 26px;" type="number" id="topKurtiNeckF"
+                        >
                     </div>
                     <div class="kurtiChild"><input style="width: 70px; height: 38px; font-size: 26px;" type="number"
-                            id="armHole" name="armHole">
+                            id="topKurtiNeckB">
                     </div>
                 </div>
 
@@ -165,30 +165,30 @@
                         <h2>Gown</h2>
                     </div>
                     <div class="gownChild" style="margin: 0 -20px 0 34px;"><input
-                            style="width: 70px; height: 38px; font-size: 26px;" type="number" id="armHole"
-                            name="armHole">
+                            style="width: 70px; height: 38px; font-size: 26px;" type="number" id="topGownArmHole"
+                        >
                     </div>
                     <div class="gownChild" style="margin: 0 -9px 0 22px;"><input
-                            style="width: 70px; height: 38px; font-size: 26px;" type="number" id="armHole"
-                            name="armHole">
+                            style="width: 70px; height: 38px; font-size: 26px;" type="number" id="topGownWaist"
+                        >
                     </div>
                     <div class="gownChild" style="margin: 0 -1px 0 0;"><input
-                            style="width: 70px; height: 38px; font-size: 26px;" type="number" id="armHole"
-                            name="armHole">
+                            style="width: 70px; height: 38px; font-size: 26px;" type="number" id="topGownLength"
+                        >
                     </div>
                     <div class="gownChild" style="margin-right: 7px;"><input
-                            style="width: 70px; height: 38px; font-size: 26px;" type="number" id="armHole"
-                            name="armHole">
+                            style="width: 70px; height: 38px; font-size: 26px;" type="number" id="topGownSleeveL"
+                        >
                     </div>
                     <div class="gownChild"><input style="width: 70px; height: 38px; font-size: 26px;" type="number"
-                            id="armHole" name="armHole">
+                            id="topGownSleeveR">
                     </div>
                     <div class="gownChild" style="margin: 0 -10px 0 4px;"><input
-                            style="width: 70px; height: 38px; font-size: 26px;" type="number" id="armHole"
-                            name="armHole">
+                            style="width: 70px; height: 38px; font-size: 26px;" type="number" id="topGownNeckF"
+                        >
                     </div>
                     <div class="gownChild"><input style="width: 70px; height: 38px; font-size: 26px;" type="number"
-                            id="armHole" name="armHole">
+                            id="topGownNeckB">
                     </div>
                 </div>
 
@@ -198,38 +198,38 @@
                         <h2>Blouse</h2>
                     </div>
                     <div class="blouseChild" style="margin: 0 -20px 0 34px;"><input
-                            style="width: 70px; height: 38px; font-size: 26px;" type="number" id="armHole"
-                            name="armHole">
+                            style="width: 70px; height: 38px; font-size: 26px;" type="number" id="topBlouseArmHole"
+                        >
                     </div>
                     <div class="blouseChild" style="margin: 0 -9px 0 22px;"><input
-                            style="width: 70px; height: 38px; font-size: 26px;" type="number" id="armHole"
-                            name="armHole">
+                            style="width: 70px; height: 38px; font-size: 26px;" type="number" id="topBlouseWaist"
+                        >
                     </div>
                     <div class="blouseChild" style="margin: 0 -1px 0 0;"><input
-                            style="width: 70px; height: 38px; font-size: 26px;" type="number" id="armHole"
-                            name="armHole">
+                            style="width: 70px; height: 38px; font-size: 26px;" type="number" id="topBlouseLength"
+                        >
                     </div>
                     <div class="blouseChild" style="margin-right: 7px;"><input
-                            style="width: 70px; height: 38px; font-size: 26px;" type="number" id="armHole"
-                            name="armHole">
+                            style="width: 70px; height: 38px; font-size: 26px;" type="number" id="topBlouseSleeveL"
+                        >
                     </div>
                     <div class="blouseChild"><input style="width: 70px; height: 38px; font-size: 26px;" type="number"
-                            id="armHole" name="armHole">
+                            id="topBlouseSleeveR">
                     </div>
                     <div class="blouseChild" style="margin: 0 -10px 0 4px;"><input
-                            style="width: 70px; height: 38px; font-size: 26px;" type="number" id="armHole"
-                            name="armHole">
+                            style="width: 70px; height: 38px; font-size: 26px;" type="number" id="topBlouseNeckF"
+                        >
                     </div>
                     <div class="blouseChild"><input style="width: 70px; height: 38px; font-size: 26px;" type="number"
-                            id="armHole" name="armHole">
+                            id="topBlouseNeckB"G
                     </div>
                 </div>
 
             </div>
 
         </h3>
-    </div>
-    </div>
+    </div>   
+</div>
 <!-- ============================================== TOP DETAILS ENDS HERE ==============================================-->
 
 
@@ -249,10 +249,10 @@ border-radius: 10px; padding: 0 40px 0 40px;">&nbsp;&nbsp;Bottom Details &nbsp;&
         <!-- ALWAYS SAME ITEMS (NO OPTIONS AVAILABLE) -->
         <div id="parent" class="container" style="font-family:sans-serif;">
             <div class="child" style="padding-left: 200px;"><span>Bottom Waist:</span>
-                <input style="width: 90px; height: 34px; font-size: 30px;" type="number" id="waist" name="waist">
+                <input style="width: 90px; height: 34px; font-size: 30px;" type="number" id="bottomWaist" name="waist">
             </div>
             <div class="child" style="margin-left: 400px;"><span>Heap Round:</span>
-                <input style="width: 90px; height: 34px; font-size: 30px;" type="number" id="bottom_hround"
+                <input style="width: 90px; height: 34px; font-size: 30px;" type="number" id="bottomHeapRound"
                     name="bottom_hround">
             </div>
         </h2>
@@ -275,12 +275,12 @@ border-radius: 10px; padding: 0 40px 0 40px;">&nbsp;&nbsp;Bottom Details &nbsp;&
                     <h2>Salwar</h2>
                 </div>
                 <div class="salwarChild" style="margin: 0 100px 0 112px;"><input
-                        style="width: 70px; height: 38px; font-size: 26px;" type="number" id="armHole"
-                        name="armHole">
+                        style="width: 70px; height: 38px; font-size: 26px;" type="number" id="bottomSalwarMori"
+                        >
                 </div>
                 <div class="salwarChild" style="margin: 0 -9px 0 22px;"><input
-                        style="width: 70px; height: 38px; font-size: 26px;" type="number" id="armHole"
-                        name="armHole">
+                        style="width: 70px; height: 38px; font-size: 26px;" type="number" id="bottomSalwarLength"
+                        >
                 </div>
             </div>
 
@@ -290,12 +290,12 @@ border-radius: 10px; padding: 0 40px 0 40px;">&nbsp;&nbsp;Bottom Details &nbsp;&
                     <h2>Pant</h2>
                 </div>
                 <div class="pantChild" style="margin: 0 100px 0 112px;"><input
-                        style="width: 70px; height: 38px; font-size: 26px;" type="number" id="armHole"
-                        name="armHole">
+                        style="width: 70px; height: 38px; font-size: 26px;" type="number" id="bottomPantMori"
+                        >
                 </div>
                 <div class="pantChild" style="margin: 0 -9px 0 22px;"><input
-                        style="width: 70px; height: 38px; font-size: 26px;" type="number" id="armHole"
-                        name="armHole">
+                        style="width: 70px; height: 38px; font-size: 26px;" type="number" id="bottomPantLength"
+                        >
                 </div>
             </div>
 
@@ -305,12 +305,12 @@ border-radius: 10px; padding: 0 40px 0 40px;">&nbsp;&nbsp;Bottom Details &nbsp;&
                     <h2>Plazo</h2>
                 </div>
                 <div class="plazoChild" style="margin: 0 100px 0 112px;"><input
-                        style="width: 70px; height: 38px; font-size: 26px;" type="number" id="armHole"
-                        name="armHole">
+                        style="width: 70px; height: 38px; font-size: 26px;" type="number" id="bottomPlazoMori"
+                        >
                 </div>
                 <div class="plazoChild" style="margin: 0 -9px 0 22px;"><input
-                        style="width: 70px; height: 38px; font-size: 26px;" type="number" id="armHole"
-                        name="armHole">
+                        style="width: 70px; height: 38px; font-size: 26px;" type="number" id="bottomPlazoLength"
+                        >
                 </div>
 
             </div>
@@ -321,12 +321,12 @@ border-radius: 10px; padding: 0 40px 0 40px;">&nbsp;&nbsp;Bottom Details &nbsp;&
                     <h2>Chaniya</h2>
                 </div>
                 <div class="chaniyaChild" style="margin: 0 100px 0 112px;"><input
-                        style="width: 70px; height: 38px; font-size: 26px;" type="number" id="armHole"
-                        name="armHole">
+                        style="width: 70px; height: 38px; font-size: 26px;" type="number" id="bottomChaniyaMori"
+                        >
                 </div>
                 <div class="chaniyaChild" style="margin: 0 -9px 0 22px;"><input
-                        style="width: 70px; height: 38px; font-size: 26px;" type="number" id="armHole"
-                        name="armHole">
+                        style="width: 70px; height: 38px; font-size: 26px;" type="number" id="bottomChaniyaLength"
+                        >
                 </div>
 
             </div>
@@ -341,7 +341,7 @@ border-radius: 10px; padding: 0 40px 0 40px;">&nbsp;&nbsp;Bottom Details &nbsp;&
 <div id="buttonSave" style="position: fixed;
 bottom: 70px;
 left: 1000px; display: flex;" class="container">
-<button class="button-64" style="margin-right: 100px;" role="button"><span class="text">Save</span></button>
+<button class="button-64" style="margin-right: 100px;" role="button" onclick="postitem()"><span class="text">Save</span></button>
 <button class="button-64" role="button"><span class="text">Print</span></button>
 <!-- <button>Print</button> -->
 </div>
@@ -370,5 +370,6 @@ left: 1000px; display: flex;" class="container">
 </script>
 
 <script src="{% static 'fashon/js/order_styling.js' %}"></script>
+<script src="{% static 'fashon/js/create_order.js' %}"></script>
 <!-- ENDS JQUERY -->
 {% endblock page %}
