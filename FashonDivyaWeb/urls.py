@@ -24,6 +24,6 @@ urlpatterns = [
     re_path(r'logout/', logoutView, name= "logoutUrl"),
     re_path(r'home/', home, name="home"),
     path(r'', home, name="index"),
-    path(r'create/', createOrder, name="createUrl"),
+    re_path(r'create/', createOrder, name="createUrl"),
     path(r'type/', customerType, name="customerTypeUrl"),
 ]
