@@ -32,14 +32,21 @@ def login(request):
 def createOrder(request):
     if request.method == "POST":
         data = request.POST
+        cnt = 0
         for item in eval(list(data.keys())[0]).values():
+            if cnt == 0:
+                phone = item['userPhone']
+                checkUser = Customer.objects.filter(userPhone = phone)
+                if checkUser.exists():
+                    return HttpResponse("exists")
+                cnt+=1
             if 'user' in list(item.keys())[0]:
                 usrPhone = list(item.values())[2]
                 user = Customer.objects.create(userName = list(item.values())[0], userDeliveryDate= list(item.values())[1], userPhone= list(item.values())[2], userAdvance= list(item.values())[3])
                 user.save()
             
             elif 'top' in list(item.keys())[0]:
-                usr = Customer.objects.filter(userPhone = usrPhone).order_by('userDeliveryDate').first()
+                usr = Customer.objects.filter(userPhone = usrPhone).first()
                 userTop = TopDetail.objects.create(user = usr,chest1 = list(item.values())[0], chest2= list(item.values())[1], shoulder= list(item.values())[2], topheapRound= list(item.values())[3], 
                 # KURTI DATA
                 topKurtiArmHole = list(item.values())[4], topKurtiWaist = list(item.values())[5],
@@ -78,8 +85,17 @@ def createOrder(request):
 
                 userBottom.save() 
 
-
+        return HttpResponse(usr.id)
     return render(request,'fashion/create_order.html')
+
+@login_required
+def customerDetails(request, id):
+    usr = Customer.objects.filter(id = id).first()
+    top_details = TopDetail.objects.filter(user = usr).values()
+    bottom_details = BottomDetail.objects.filter(user = usr).values()
+    data = {'user':usr, 'top':top_details, 'bottom':bottom_details}
+    return render(request, 'fashion/customerDetails.html',data)
+
 
 @login_required
 def customerType(request):

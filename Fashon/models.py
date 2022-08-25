@@ -13,7 +13,7 @@ class Customer(models.Model):
 
 
 class TopDetail(models.Model):
-    user = models.OneToOneField(Customer, on_delete=models.CASCADE)
+    user = models.ForeignKey(Customer, on_delete=models.CASCADE)
     chest1 = models.IntegerField()
     chest2 = models.IntegerField()
     shoulder = models.IntegerField()
@@ -51,7 +51,7 @@ class TopDetail(models.Model):
 
 
 class BottomDetail(models.Model):
-    user = models.OneToOneField(Customer, on_delete=models.CASCADE)
+    user = models.ForeignKey(Customer, on_delete=models.CASCADE)
     bottomWaist = models.IntegerField()
     bottomHeapRound = models.IntegerField()
 

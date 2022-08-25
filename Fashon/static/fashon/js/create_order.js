@@ -107,15 +107,13 @@ function postitem(index) {
             method : 'POST',
             data:  JSON.stringify({'userData':userData, 'topData':topData,'bottomData':bottomData}),
             success: function(resp){
-                if (resp === 'success'){
-                    window.location.href = "/home/"
+                console.log(typeof(resp));
+                if (resp === "exists"){
+                    alert("The Customer already exists. Please check in My Customer")
                 }
-                // else{
-                //     let failure=document.getElementById('failure');
-                //     // success.classList.remove('show');
-                //     failure.classList.add('show');
-                //     $('#failure').show();
-                // }
+                else{
+                    window.location.href = "/details/"+resp
+                }
             },
     
         });

@@ -18,12 +18,16 @@ from django.urls import path, re_path
 from Fashon.views import *
 
 urlpatterns = [
+# ALL ONLY PATH API
     path('admin/', admin.site.urls),
     path(r'test/', test, name="test"),
+    path(r'', home, name="index"),
+    path(r'type/', customerType, name="customerTypeUrl"),
+
+# ALL REPATH API's
     re_path(r'login/', login, name='loginUrl'),
     re_path(r'logout/', logoutView, name= "logoutUrl"),
     re_path(r'home/', home, name="home"),
-    path(r'', home, name="index"),
     re_path(r'create/', createOrder, name="createUrl"),
-    path(r'type/', customerType, name="customerTypeUrl"),
+    re_path(r'details/(?P<id>\d{1,10})/$', customerDetails, name="customDetail")
 ]
