@@ -42,15 +42,14 @@
     <form>
         <div class="input-group" style="width: 50%; height: 50px; margin-top: 20px;">
             <span class="input-group-text" id="basic-addon1">📞</span>
-            <input style="font-size: 20px;" placeholder="Eg: 8823327820"  type="tel" class="form-control">
+            <input style="font-size: 20px;" placeholder="Eg: 8823327820" id="numb" type="number" class="form-control">
         </div>
         <label id="check" style="color: darkviolet; padding-top: 4px; display: show;">Check whether customer exists or not.</label>
         <label id="found" style="color:rgb(0, 167, 111) ; padding-top: 4px; display: none;">The Registered Customer exists, Click Proceed.</label>
         <label id="notFound" style="color: crimson; padding-top: 4px; display: none;">Sorry, Customer not found.</label>
     </form>
-    <button class="button-86" style="
-    padding: 18px 73px;
-    margin: 41px 0 0 192px;
+    <button id="checkBtn" class="button-86" style="
+    margin: 40px 0 0 188px;
     border-radius: 15px;
     display: none;"><span class="text">Proceed</span></button>
    </div>
@@ -58,4 +57,6 @@
 </div>
 
 <script src="{% static 'fashon/js/type_create.js' %}"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
 {% endblock page %}

@@ -7,6 +7,14 @@ from django.contrib.auth import authenticate, login as auth_login, logout
 
 # Create your views here.
 @login_required
+def customerCheck(request):
+    user = Customer.objects.filter(userPhone = list(request.GET.keys())[0]).first()
+    if user is not None:
+        return HttpResponse(user.id)
+    else:
+        return HttpResponse('fail')
+
+@login_required
 def home(request):
     return render(request, 'fashion/index.html')
 
@@ -46,8 +54,7 @@ def createOrder(request):
                 user.save()
             
             elif 'top' in list(item.keys())[0]:
-                usr = Customer.objects.filter(userPhone = usrPhone).first()
-                userTop = TopDetail.objects.create(user = usr,chest1 = list(item.values())[0], chest2= list(item.values())[1], shoulder= list(item.values())[2], topheapRound= list(item.values())[3], 
+                userTop = TopDetail.objects.create(user = user,chest1 = list(item.values())[0], chest2= list(item.values())[1], shoulder= list(item.values())[2], topheapRound= list(item.values())[3], 
                 # KURTI DATA
                 topKurtiArmHole = list(item.values())[4], topKurtiWaist = list(item.values())[5],
                 topKurtiLength = list(item.values())[6], topKurtiSleeveL = list(item.values())[7], 
@@ -69,7 +76,7 @@ def createOrder(request):
                 userTop.save()
                 
             elif 'bottom' in list(item.keys())[0]:
-                userBottom = BottomDetail.objects.create(user = usr, bottomWaist = list(item.values())[0], bottomHeapRound = list(item.values())[1],
+                userBottom = BottomDetail.objects.create(user =user, bottomWaist = list(item.values())[0], bottomHeapRound = list(item.values())[1],
 
                 # FOR SALWAR
                 bottomSalwarMori = list(item.values())[2], bottomSalwarLength = list(item.values())[3], 
@@ -85,14 +92,14 @@ def createOrder(request):
 
                 userBottom.save() 
 
-        return HttpResponse(usr.id)
+        return HttpResponse(user.id)
     return render(request,'fashion/create_order.html')
 
 @login_required
 def customerDetails(request, id):
     usr = Customer.objects.filter(id = id).first()
-    top_details = TopDetail.objects.filter(user = usr).values()
-    bottom_details = BottomDetail.objects.filter(user = usr).values()
+    top_details = list(TopDetail.objects.filter(user = usr).values())[0]
+    bottom_details = list(BottomDetail.objects.filter(user = usr).values())[0]
     data = {'user':usr, 'top':top_details, 'bottom':bottom_details}
     return render(request, 'fashion/customerDetails.html',data)
 

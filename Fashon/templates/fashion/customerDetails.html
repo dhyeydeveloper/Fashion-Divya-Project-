@@ -1,7 +1,7 @@
 {% extends "fashion/low_base.html" %}
 {% load static %}
 {% block navpage %}
-<li><a class="nav-link" href="#">Create Order</a></li>
+<li><a class="nav-link" href="{% url 'customerTypeUrl' %}">Create Order</a></li>
 <li><a class="nav-link" href="#">Pending Orders</a></li>
 <li><a class="nav-link" href="#">Pending Delivery</a></li>
 <li><a class="nav-link" href="#">My Customers</a></li>
@@ -9,6 +9,220 @@
 
 
 {% block page %}
+<link rel="stylesheet" href="{% static 'fashon/css/details.css' %}">
+<div id="customerDetails" class="container">
+<!--========================================================= CUSTOMER DETAILS STARTS=========================================================================== -->
+    <div class="col-md-12">
+        <div class="card mb">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <h5 class="mb-0">Customer Name:</h5>
+              </div>
+              <div class="col-sm-9 text">
+                {{user.userName}}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3 ">
+                <h5 class="mb-0">Mobile:</h5>
+              </div>
+              <div class="col-sm-9 text">
+                {{user.userPhone}}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3 ">
+                <h5 class="mb-0">Delivery Date:</h5>
+              </div>
+              <div class="col-sm-9 text">
+                {{user.userDeliveryDate}}
+              </div>
+            </div>
+        </div> 
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center"><img class="rounded-circle" style="width: 150px; height: 150px;" src="{% static 'fashon/img/lady.jpg' %}">
+            </div>
+            <hr style="margin: 10px 0;">
+              <div class="col-sm-12">
+                <button class="btn btn-info " style="width: 100px; margin-bottom: 10px;" target="__blank">Edit</button>
+                <button class="btn btn-danger" style="width: 100px; margin: -10px 0 0 5px;" target="__blank">Delete</button> 
+                <button class="btn btn-warning" style="width: 100px; margin: -10px 0 0 5px;" target="__blank">Print</button> 
+              </div>
+        </div>
+    </div> 
+<!--========================================================= CUSTOMER DETAILS ENDS=========================================================================== -->
 
+<!-- =========================================================TOP DETAILS STARTS =========================================================-->
+<div class="card mb" style="margin-top: 8px;">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-sm-3">
+        <h4 class="mb-0">Top Clothing Details:</h4>
+      </div>
+    </div>
+    <hr style="margin: 11px">
+     
+<!-- Separation 1 -->
+<div class="row">
+  <div class="col-sm-12" style="display: contents;">    
+    <div id="parent2" class="col-sm-3" style="font-family:sans-serif; margin-bottom: 12px;">
+      <div class="child2"><button  id="button1" class="shrink-border">CHEST 1:</button>
+        <button>{{top.chest1}} inch</button>
+      </div>
+    </div>
+    <div id="parent2" class="col-sm-3" style="font-family:sans-serif; margin-bottom: 12px;">
+      <div class="child2"><button id="button1"  class="shrink-border">CHEST 2:</button>
+        <button>{{top.chest2}} inch</button>
+      </div>
+    </div>
+    <div id="parent2" class="col-sm-3" style="font-family:sans-serif; margin-bottom: 12px;">
+      <div class="child2"><button  id="button1" class="shrink-border">SHOULDER:</button>
+        <button>{{top.shoulder}} inch</button>
+      </div>
+    </div>
+    <div id="parent2" class="col-sm-3" style="font-family:sans-serif; margin-bottom: 12px;">
+      <div class="child2"><button  id="button1" class="shrink-border">HEAP ROUND:</button>
+        <button>{{top.topheapRound}} inch</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Separation 1 ends -->
+
+<!-- Separation 2 STARTS -->
+<div class="row">
+  <div class="col-sm-12">
+    
+<table class="table table-striped table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Arm Hole</th>
+      <th scope="col">Waist</th>
+      <th scope="col">Length</th>
+      <th scope="col">Sleeve-L</th>
+      <th scope="col">Sleeve-R</th>
+      <th scope="col">Neck-F</th>
+      <th scope="col">Neck-B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Kurti</th>
+      <td>{{top.topKurtiArmHole}} inch</td>
+      <td>{{top.topKurtiWaist}} inch</td>
+      <td>{{top.topKurtiLength}} inch</td>
+      <td>{{top.topKurtiSleeveL}} inch</td>
+      <td>{{top.topKurtiSleeveR}} inch</td>
+      <td>{{top.topKurtiNeckF}} inch</td>
+      <td>{{top.topKurtiNeckB}} inch</td>
+    </tr>
+    <tr>
+      <th scope="row">Gown</th>
+      <td>{{top.topGownArmHole}} inch</td>
+      <td>{{top.topGownWaist}} inch</td>
+      <td>{{top.topGownLength}} inch</td>
+      <td>{{top.topGownSleeveL}} inch</td>
+      <td>{{top.topGownSleeveR}} inch</td>
+      <td>{{top.topGownNeckF}} inch</td>
+      <td>{{top.topGownNeckB}} inch</td>
+    </tr>
+    <tr>
+      <th scope="row">Blouse</th>
+      <td>{{top.topBlouseArmHole}} inch</td>
+      <td>{{top.topBlouseWaist}} inch</td>
+      <td>{{top.topBlouseLength}} inch</td>
+      <td>{{top.topBlouseSleeveL}} inch</td>
+      <td>{{top.topBlouseSleeveR}} inch</td>
+      <td>{{top.topBlouseNeckF}} inch</td>
+      <td>{{top.topBlouseNeckB}} inch</td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+</div> 
+<!-- Separation 2 ENDS -->
+</div>
+</div>
+<!-- =========================================================TOP DETAILS ENDS=========================================================-->
+
+
+
+<!-- =========================================================BOTTOM DETAILS STARTS =========================================================-->
+<div class="card mb" style="margin-top: 8px;">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-sm-3">
+        <h4 class="mb-0">Bottom Clothing Details:</h4>
+      </div>
+    </div>
+    <hr style="margin: 11px">
+     
+<!-- Separation 1 -->
+<div class="row">
+  <div class="col-sm-12" style="display: contents;">    
+    <div id="parent2" class="col-sm-4" style="font-family:sans-serif; margin-bottom: 12px; margin-left: 172px;">
+      <div class="child2"><button  id="button1" class="shrink-border">Bottom Waist:</button>
+        <button>{{bottom.bottomWaist}} inch</button>
+      </div>
+    </div>
+    <div id="parent2" class="col-sm-4" style="font-family:sans-serif; margin-bottom: 12px;">
+      <div class="child2"><button id="button1"  class="shrink-border">Bottom Heap Round:</button>
+        <button>{{bottom.bottomHeapRound}} inch</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Separation 1 ends -->
+
+<!-- Separation 2 STARTS -->
+<div class="row">
+  <div class="col-sm-12">
+    
+<table class="table table-striped table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Mori</th>
+      <th scope="col">Length</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Salwar</th>
+      <td>{{bottom.bottomSalwarMori}} inch</td>
+      <td>{{bottom.bottomSalwarLength}} inch</td>
+    </tr>
+    <tr>
+      <th scope="row">Pant</th>
+      <td>{{bottom.bottomPantMori}} inch</td>
+      <td>{{bottom.bottomPantLength}} inch</td>
+    </tr>
+    <tr>
+      <th scope="row">Plazo</th>
+      <td>{{bottom.bottomPlazoMori}} inch</td>
+      <td>{{bottom.bottomPlazoLength}} inch</td>
+    </tr>
+    <tr>
+      <th scope="row">Chaniya</th>
+      <td>{{bottom.bottomChaniyaMori}} inch</td>
+      <td>{{bottom.bottomChaniyaLength}} inch</td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+</div> 
+<!-- Separation 2 ENDS -->
+<!-- =========================================================BOTTOM DETAILS ENDS=========================================================-->
+
+
+</div>
 
 {% endblock page %}
+
+
+
+

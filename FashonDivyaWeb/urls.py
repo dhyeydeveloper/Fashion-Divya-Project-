@@ -29,5 +29,6 @@ urlpatterns = [
     re_path(r'logout/', logoutView, name= "logoutUrl"),
     re_path(r'home/', home, name="home"),
     re_path(r'create/', createOrder, name="createUrl"),
-    re_path(r'details/(?P<id>\d{1,10})/$', customerDetails, name="customDetail")
+    re_path(r'details/(?P<id>\d{1,10})/$', customerDetails, name="customDetail"),
+    re_path(r'check/', customerCheck, name="checkUrl"),
 ]
