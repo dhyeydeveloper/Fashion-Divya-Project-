@@ -47,12 +47,13 @@
             </div>
             <hr style="margin: 10px 0;">
               <div class="col-sm-12">
-                <button class="btn btn-info " style="width: 100px; margin-bottom: 10px;" target="__blank">Edit</button>
-                <button class="btn btn-danger" style="width: 100px; margin: -10px 0 0 5px;" target="__blank">Delete</button> 
-                <button class="btn btn-warning" style="width: 100px; margin: -10px 0 0 5px;" target="__blank">Print</button> 
+                <button class="btn btn-info " style="width: 100px; margin-bottom: 10px;" target="__blank" id="edit">Edit</button>
+                <button class="btn btn-danger" style="width: 100px; margin: -10px 0 0 5px;" id="delete" data-fid="@item.ForkliftID" data-toggle="modal" data-target="#DeleteConfirmationModal">Delete</button>
+                <button class="btn btn-warning" style="width: 100px; margin: -10px 0 0 5px;" target="__blank" id="print">Print</button> 
               </div>
         </div>
     </div> 
+
 <!--========================================================= CUSTOMER DETAILS ENDS=========================================================================== -->
 
 <!-- =========================================================TOP DETAILS STARTS =========================================================-->
@@ -219,10 +220,85 @@
 <!-- =========================================================BOTTOM DETAILS ENDS=========================================================-->
 
 
+<!-- Modal -->
+<div class="modal fade" id="DeleteConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete "{{user.userName}}" Details</h5>
+        <button id="cross" style="background-color:black; color:whitesmoke" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">x</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete this item?
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="close" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button id="delete-confirm" type="button" class="btn btn-danger">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 
+<script>
+  let edit = document.getElementById("edit");
+  edit.addEventListener('click',(e)=>{
+    link = window.location.href.toString()
+    let splitURL=link.toString().split("/");
+    id = splitURL[splitURL.length -2]
+    window.location.href = '/details_edit/' + id
+  })
+</script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+<script>
+    $(document).ready(function () {
+        // handler for the trash button
+        $(".btn.btn-danger").click(function (e) {
+
+            e.stopPropagation()
+            let target = $(this).data('target')
+            let forkliftId = $(this).data('fid')
+            // update the forklift to delete in the hidden field
+            $('#forklift-Id').val(forkliftId)
+            $(target).modal('show')
+        })
+
+        // handler for the delete confirmation on the modal
+        $('#delete-confirm').click(function () {
+            $('#delete-forklift-form').submit()
+        })
+    })
+
+    let cross = document.getElementById('cross');
+    cross.addEventListener('click',()=>{
+      $('#DeleteConfirmationModal').modal('toggle');
+    })
+
+    let close = document.getElementById('close');
+    close.addEventListener('click',()=>{
+      $('#DeleteConfirmationModal').modal('toggle');
+    })
+
+    let deleteItem = document.getElementById('delete-confirm');
+    deleteItem.addEventListener('click',()=>{
+      link = window.location.href.toString()
+      let splitURL=link.toString().split("/");
+      id = splitURL[splitURL.length -2]
+      $.ajax({
+            url: "/delete/",
+            method : 'GET',
+            data: id,
+            success: function(resp){
+                if (resp === 'success'){
+                    window.location.href = "/home/"
+                }
+            }
+        });
+    })
+</script>
+}
 {% endblock page %}
-
-
-
-

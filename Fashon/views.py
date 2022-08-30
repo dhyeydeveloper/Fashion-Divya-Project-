@@ -15,6 +15,10 @@ def customerCheck(request):
         return HttpResponse('fail')
 
 @login_required
+def detailsEdit(request, id):    
+    return render(request, 'fashion/customerDetailsEdit.html')
+
+@login_required
 def home(request):
     return render(request, 'fashion/index.html')
 
@@ -102,6 +106,13 @@ def customerDetails(request, id):
     bottom_details = list(BottomDetail.objects.filter(user = usr).values())[0]
     data = {'user':usr, 'top':top_details, 'bottom':bottom_details}
     return render(request, 'fashion/customerDetails.html',data)
+
+@login_required
+def deleteCustomer(request):
+    id = list(request.GET.keys())[0]
+    customer = Customer.objects.get(id = id)
+    customer.delete()
+    return HttpResponse('success')
 
 
 @login_required

@@ -13,8 +13,7 @@ let checkBtn = document.getElementById('checkBtn')
 
 let numb = document.getElementById('numb');
 numb.addEventListener('input', (e) => {
-    phone = numb.value;
-    console.log(phone.length);
+    let phone = numb.value;
     if (phone.length == 10){
         $.ajax({
             type: 'GET',
@@ -25,6 +24,9 @@ numb.addEventListener('input', (e) => {
                     check.style.display = "none"
                     found.style.display = "block"
                     checkBtn.style.display = ""
+                    checkBtn.addEventListener('click', (e)=>{
+                        window.location.href = '/details/'+ resp
+                    })
                 }
                 else if (resp == 'fail'){
                     check.style.display = "none"
@@ -38,5 +40,5 @@ numb.addEventListener('input', (e) => {
         found.style.display = "none"
         notFound.style.display = "none"
         checkBtn.style.display = "none"
-    } 
+    }
 });
