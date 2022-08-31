@@ -107,7 +107,6 @@ function postitem(index) {
             method : 'POST',
             data:  JSON.stringify({'userData':userData, 'topData':topData,'bottomData':bottomData}),
             success: function(resp){
-                console.log(typeof(resp));
                 if (resp === "exists"){
                     alert("The Customer already exists. Please check in My Customer")
                 }

@@ -19,7 +19,7 @@
                 <h5 class="mb-0">Customer Name:</h5>
               </div>
               <div class="col-sm-9 text">
-                <input type="text" style="border: double; background-color: beige;" value="{{user.userName}}">
+                <input type="text" id="userName" style="border: double; background-color: beige;" value="{{user.userName}}">
               </div>
             </div>
             <hr style="margin: 11px 0;">
@@ -28,7 +28,7 @@
                 <h5 class="mb-0">Mobile:</h5>
               </div>
               <div class="col-sm-9 text">
-                <input type="number" style="border: double;  background-color: beige;" value="{{user.userPhone}}">
+                <input type="number" id="userPhone" style="border: double;  background-color: beige;" value="{{user.userPhone}}">
               </div>
             </div>
             <hr style="margin: 11px 0;">
@@ -38,7 +38,7 @@
               </div>
               <div class="col-sm-9 text">
                 <div class="input-group datepicker">
-                    <input type="text" style="border: double;  background-color: beige;" name="date" value="{{user.userDeliveryDate}}">
+                    <input type="text"id="userDeliveryDate" style="border: double;  background-color: beige;" name="date" value="{{user.userDeliveryDate}}">
                 </div>
               </div>
             </div>
@@ -48,7 +48,7 @@
                 <h5 class="mb-0">Advance:</h5>
               </div>
               <div class="col-sm-9 text">
-                    <input type="number" style="border: double;  background-color: beige; 
+                    <input type="number" id="userAdvance" style="border: double;  background-color: beige; 
                     margin-bottom: 5px;" value="{{user.userAdvance}}">
               </div>
             </div>
@@ -58,7 +58,7 @@
             </div>
             <hr style="margin: 10px 0;">
               <div class="col-sm-12">
-                <button class="btn btn-success" style="width: 157px; height: 51px; margin-bottom: 0px; font-weight: bold;" target="__blank" id="edit">Save</button>
+                <button class="btn btn-success" style="width: 157px; height: 51px; margin-bottom: 0px; font-weight: bold;" target="__blank" id="save" onclick="postitem()">Save</button>
                 <button class="btn btn-warning" style="width: 157px; height: 51px; margin: 0px 5px 0 0px; font-weight: bold;" target="__blank" id="print">Print</button> 
               </div>
         </div>
@@ -81,22 +81,22 @@
   <div class="col-sm-12" style="display: contents;">    
     <div id="parent2" class="col-sm-3" style="font-family:sans-serif; margin-bottom: 12px;">
       <div class="child2"><button  id="button1" class="shrink-border">CHEST 1:</button>
-        <input type="number" value="{{top.chest1}}">
+        <input type="number" id="topChest1" value="{{top.chest1}}">
       </div>
     </div>
     <div id="parent2" class="col-sm-3" style="font-family:sans-serif; margin-bottom: 12px;">
       <div class="child2"><button id="button1"  class="shrink-border">CHEST 2:</button>
-        <input type="number" value="{{top.chest2}}">
+        <input type="number" id="topChest2" value="{{top.chest2}}">
       </div>
     </div>
     <div id="parent2" class="col-sm-3" style="font-family:sans-serif; margin-bottom: 12px;">
       <div class="child2"><button  id="button1" class="shrink-border">SHOULDER:</button>
-        <input type="number" value="{{top.shoulder}}">
+        <input type="number" id="topShoulder" value="{{top.shoulder}}">
       </div>
     </div>
     <div id="parent2" class="col-sm-3" style="font-family:sans-serif; margin-bottom: 12px;">
       <div class="child2"><button  id="button1" class="shrink-border">HEAP ROUND:</button>
-        <input type="number" value="{{top.topheapRound}}">
+        <input type="number" id="topHeapRound" value="{{top.topheapRound}}">
       </div>
     </div>
   </div>
@@ -123,33 +123,33 @@
   <tbody>
     <tr>
       <th scope="row">Kurti</th>
-      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{top.topKurtiArmHole}}"></td>
-      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{top.topKurtiWaist}}"></td>
-      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{top.topKurtiLength}}"></td>
-      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{top.topKurtiSleeveL}}"></td>
-      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{top.topKurtiSleeveR}}"></td>
-      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{top.topKurtiNeckF}}"></td>
-      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{top.topKurtiNeckB}}"></td>
+      <td><input type="number" id="topKurtiArmHole" style="width: 50px; font-weight: bold; font-size: 20px;" value="{{top.topKurtiArmHole}}"></td>
+      <td><input type="number" id="topKurtiWaist" style="width: 50px; font-weight: bold; font-size: 20px;" value="{{top.topKurtiWaist}}"></td>
+      <td><input type="number" id="topKurtiLength" style="width: 50px; font-weight: bold; font-size: 20px;" value="{{top.topKurtiLength}}"></td>
+      <td><input type="number" id="topKurtiSleeveL" style="width: 50px; font-weight: bold; font-size: 20px;" value="{{top.topKurtiSleeveL}}"></td>
+      <td><input type="number" id="topKurtiSleeveR" style="width: 50px; font-weight: bold; font-size: 20px;" value="{{top.topKurtiSleeveR}}"></td>
+      <td><input type="number" id="topKurtiNeckF" style="width: 50px; font-weight: bold; font-size: 20px;" value="{{top.topKurtiNeckF}}"></td>
+      <td><input type="number" id="topKurtiNeckB" style="width: 50px; font-weight: bold; font-size: 20px;" value="{{top.topKurtiNeckB}}"></td>
     </tr>
     <tr>
       <th scope="row">Gown</th>
-      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{top.topGownArmHole}}"></td>
-      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{top.topGownWaist}}"></td>
-      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{top.topGownLength}}"></td>
-      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{top.topGownSleeveL}}"></td>
-      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{top.topGownSleeveR}}"></td>
-      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{top.topGownNeckF}}"></td>
-      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{top.topGownNeckB}}"></td>
+      <td><input type="number" id="topGownArmHole" style="width: 50px; font-weight: bold; font-size: 20px;" value="{{top.topGownArmHole}}"></td>
+      <td><input type="number" id="topGownWaist" style="width: 50px; font-weight: bold; font-size: 20px;" value="{{top.topGownWaist}}"></td>
+      <td><input type="number" id="topGownLength" style="width: 50px; font-weight: bold; font-size: 20px;" value="{{top.topGownLength}}"></td>
+      <td><input type="number" id="topGownSleeveL" style="width: 50px; font-weight: bold; font-size: 20px;" value="{{top.topGownSleeveL}}"></td>
+      <td><input type="number" id="topGownSleeveR" style="width: 50px; font-weight: bold; font-size: 20px;" value="{{top.topGownSleeveR}}"></td>
+      <td><input type="number" id="topGownNeckF" style="width: 50px; font-weight: bold; font-size: 20px;" value="{{top.topGownNeckF}}"></td>
+      <td><input type="number" id="topGownNeckB" style="width: 50px; font-weight: bold; font-size: 20px;" value="{{top.topGownNeckB}}"></td>
     </tr>
     <tr>
       <th scope="row">Blouse</th>
-      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{top.topBlouseArmHole}}"></td>
-      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{top.topBlouseWaist}}"></td>
-      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{top.topBlouseLength}}"></td>
-      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{top.topBlouseSleeveL}}"></td>
-      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{top.topBlouseSleeveR}}"></td>
-      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{top.topBlouseNeckF}}"></td>
-      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{top.topBlouseNeckB}}"></td>
+      <td><input type="number" id="topBlouseArmHole" style="width: 50px; font-weight: bold; font-size: 20px;" value="{{top.topBlouseArmHole}}"></td>
+      <td><input type="number" id="topBlouseWaist" style="width: 50px; font-weight: bold; font-size: 20px;" value="{{top.topBlouseWaist}}"></td>
+      <td><input type="number" id="topBlouseLength" style="width: 50px; font-weight: bold; font-size: 20px;" value="{{top.topBlouseLength}}"></td>
+      <td><input type="number" id="topBlouseSleeveL" style="width: 50px; font-weight: bold; font-size: 20px;" value="{{top.topBlouseSleeveL}}"></td>
+      <td><input type="number" id="topBlouseSleeveR" style="width: 50px; font-weight: bold; font-size: 20px;" value="{{top.topBlouseSleeveR}}"></td>
+      <td><input type="number" id="topBlouseNeckF" style="width: 50px; font-weight: bold; font-size: 20px;" value="{{top.topBlouseNeckF}}"></td>
+      <td><input type="number" id="topBlouseNeckB" style="width: 50px; font-weight: bold; font-size: 20px;" value="{{top.topBlouseNeckB}}"></td>
     </tr>
   </tbody>
 </table>
@@ -176,12 +176,12 @@
   <div class="col-sm-12" style="display: contents;">    
     <div id="parent2" class="col-sm-4" style="font-family:sans-serif; margin-bottom: 12px; margin-left: 172px;">
       <div class="child2"><button  id="button1" class="shrink-border">Bottom Waist:</button>
-        <input type="number" value="{{bottom.bottomWaist}}">
+        <input type="number" id="bottomWaist" value="{{bottom.bottomWaist}}">
       </div>
     </div>
     <div id="parent2" class="col-sm-4" style="font-family:sans-serif; margin-bottom: 12px;">
       <div class="child2"><button id="button1"  class="shrink-border">Bottom Heap Round:</button>
-        <input type="number" value="{{bottom.bottomHeapRound}}">
+        <input type="number" id="bottom_hround" value="{{bottom.bottomHeapRound}}">
       </div>
     </div>
   </div>
@@ -203,23 +203,23 @@
   <tbody>
     <tr>
       <th scope="row">Salwar</th>
-      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{bottom.bottomSalwarMori}}"></td>
-      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{bottom.bottomSalwarLength}}"></td>
+      <td><input type="number" id="bottomSalwarMori" style="width: 50px; font-weight: bold; font-size: 20px;" value="{{bottom.bottomSalwarMori}}"></td>
+      <td><input type="number" id="bottomSalwarLength" style="width: 50px; font-weight: bold; font-size: 20px;" value="{{bottom.bottomSalwarLength}}"></td>
     </tr>
     <tr>
       <th scope="row">Pant</th>
-      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{bottom.bottomPantMori}}"></td>
-      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{bottom.bottomPantLength}}"></td>
+      <td><input type="number" id="bottomPantMori" style="width: 50px; font-weight: bold; font-size: 20px;" value="{{bottom.bottomPantMori}}"></td>
+      <td><input type="number" id="bottomPantLength" style="width: 50px; font-weight: bold; font-size: 20px;" value="{{bottom.bottomPantLength}}"></td>
     </tr>
     <tr>
       <th scope="row">Plazo</th>
-      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{bottom.bottomPlazoMori}}"></td>
-      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{bottom.bottomPlazoLength}}"></td>
+      <td><input type="number" id="bottomPlazoMori" style="width: 50px; font-weight: bold; font-size: 20px;" value="{{bottom.bottomPlazoMori}}"></td>
+      <td><input type="number" id="bottomPlazoLength" style="width: 50px; font-weight: bold; font-size: 20px;" value="{{bottom.bottomPlazoLength}}"></td>
     </tr>
     <tr>
       <th scope="row">Chaniya</th>
-      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{bottom.bottomChaniyaMori}}"></td>
-      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{bottom.bottomChaniyaLength}}"></td>
+      <td><input type="number" id="bottomChaniyaMori" style="width: 50px; font-weight: bold; font-size: 20px;" value="{{bottom.bottomChaniyaMori}}"></td>
+      <td><input type="number" id="bottomChaniyaLength" style="width: 50px; font-weight: bold; font-size: 20px;" value="{{bottom.bottomChaniyaLength}}"></td>
     </tr>
   </tbody>
 </table>
@@ -244,4 +244,6 @@
         date_input.datepicker(options);
     })
 </script>
+
+<script src="{% static 'fashon/js/detailsEdit.js' %}"></script>
 {% endblock page %}
