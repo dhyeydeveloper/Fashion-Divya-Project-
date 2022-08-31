@@ -6,3 +6,242 @@
 <li><a class="nav-link" href="#">Pending Delivery</a></li>
 <li><a class="nav-link" href="#">My Customers</a></li>
 {% endblock navpage %}
+
+{% block page %}
+<link rel="stylesheet" href="{% static 'fashon/css/detailsEdit.css' %}">
+<div id="customerDetails" class="container">
+<!--========================================================= CUSTOMER DETAILS STARTS=========================================================================== -->
+    <div class="col-md-12">
+        <div class="card mb">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <h5 class="mb-0">Customer Name:</h5>
+              </div>
+              <div class="col-sm-9 text">
+                <input type="text" style="border: double; background-color: beige;" value="{{user.userName}}">
+              </div>
+            </div>
+            <hr style="margin: 11px 0;">
+            <div class="row">
+              <div class="col-sm-3 ">
+                <h5 class="mb-0">Mobile:</h5>
+              </div>
+              <div class="col-sm-9 text">
+                <input type="number" style="border: double;  background-color: beige;" value="{{user.userPhone}}">
+              </div>
+            </div>
+            <hr style="margin: 11px 0;">
+            <div class="row">
+              <div class="col-sm-3 ">
+                <h5 class="mb-0">Delivery Date:</h5>
+              </div>
+              <div class="col-sm-9 text">
+                <div class="input-group datepicker">
+                    <input type="text" style="border: double;  background-color: beige;" name="date" value="{{user.userDeliveryDate}}">
+                </div>
+              </div>
+            </div>
+            <hr style="margin: 11px 0;">
+            <div class="row">
+              <div class="col-sm-3 ">
+                <h5 class="mb-0">Advance:</h5>
+              </div>
+              <div class="col-sm-9 text">
+                    <input type="number" style="border: double;  background-color: beige; 
+                    margin-bottom: 5px;" value="{{user.userAdvance}}">
+              </div>
+            </div>
+        </div> 
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center"><img class="rounded-circle" style="width: 150px; height: 150px;" src="{% static 'fashon/img/lady.jpg' %}">
+            </div>
+            <hr style="margin: 10px 0;">
+              <div class="col-sm-12">
+                <button class="btn btn-success" style="width: 157px; height: 51px; margin-bottom: 0px; font-weight: bold;" target="__blank" id="edit">Save</button>
+                <button class="btn btn-warning" style="width: 157px; height: 51px; margin: 0px 5px 0 0px; font-weight: bold;" target="__blank" id="print">Print</button> 
+              </div>
+        </div>
+    </div> 
+
+<!--========================================================= CUSTOMER DETAILS ENDS=========================================================================== -->
+
+<!-- =========================================================TOP DETAILS STARTS =========================================================-->
+<div class="card mb" style="margin-top: 8px;">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-sm-3">
+        <h4 class="mb-0">Top Clothing Details:</h4>
+      </div>
+    </div>
+    <hr style="margin: 11px">
+     
+<!-- Separation 1 -->
+<div class="row">
+  <div class="col-sm-12" style="display: contents;">    
+    <div id="parent2" class="col-sm-3" style="font-family:sans-serif; margin-bottom: 12px;">
+      <div class="child2"><button  id="button1" class="shrink-border">CHEST 1:</button>
+        <input type="number" value="{{top.chest1}}">
+      </div>
+    </div>
+    <div id="parent2" class="col-sm-3" style="font-family:sans-serif; margin-bottom: 12px;">
+      <div class="child2"><button id="button1"  class="shrink-border">CHEST 2:</button>
+        <input type="number" value="{{top.chest2}}">
+      </div>
+    </div>
+    <div id="parent2" class="col-sm-3" style="font-family:sans-serif; margin-bottom: 12px;">
+      <div class="child2"><button  id="button1" class="shrink-border">SHOULDER:</button>
+        <input type="number" value="{{top.shoulder}}">
+      </div>
+    </div>
+    <div id="parent2" class="col-sm-3" style="font-family:sans-serif; margin-bottom: 12px;">
+      <div class="child2"><button  id="button1" class="shrink-border">HEAP ROUND:</button>
+        <input type="number" value="{{top.topheapRound}}">
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Separation 1 ends -->
+
+<!-- Separation 2 STARTS -->
+<div class="row">
+  <div class="col-sm-12">
+    
+<table class="table table-striped table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Arm Hole</th>
+      <th scope="col">Waist</th>
+      <th scope="col">Length</th>
+      <th scope="col">Sleeve-L</th>
+      <th scope="col">Sleeve-R</th>
+      <th scope="col">Neck-F</th>
+      <th scope="col">Neck-B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Kurti</th>
+      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{top.topKurtiArmHole}}"></td>
+      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{top.topKurtiWaist}}"></td>
+      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{top.topKurtiLength}}"></td>
+      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{top.topKurtiSleeveL}}"></td>
+      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{top.topKurtiSleeveR}}"></td>
+      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{top.topKurtiNeckF}}"></td>
+      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{top.topKurtiNeckB}}"></td>
+    </tr>
+    <tr>
+      <th scope="row">Gown</th>
+      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{top.topGownArmHole}}"></td>
+      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{top.topGownWaist}}"></td>
+      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{top.topGownLength}}"></td>
+      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{top.topGownSleeveL}}"></td>
+      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{top.topGownSleeveR}}"></td>
+      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{top.topGownNeckF}}"></td>
+      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{top.topGownNeckB}}"></td>
+    </tr>
+    <tr>
+      <th scope="row">Blouse</th>
+      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{top.topBlouseArmHole}}"></td>
+      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{top.topBlouseWaist}}"></td>
+      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{top.topBlouseLength}}"></td>
+      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{top.topBlouseSleeveL}}"></td>
+      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{top.topBlouseSleeveR}}"></td>
+      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{top.topBlouseNeckF}}"></td>
+      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{top.topBlouseNeckB}}"></td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+</div> 
+<!-- Separation 2 ENDS -->
+</div>
+</div>
+<!-- =========================================================TOP DETAILS ENDS=========================================================-->
+
+
+<!-- =========================================================BOTTOM DETAILS STARTS =========================================================-->
+<div class="card mb" style="margin-top: 8px;">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-sm-3">
+        <h4 class="mb-0">Bottom Clothing Details:</h4>
+      </div>
+    </div>
+    <hr style="margin: 11px">
+     
+<!-- Separation 1 -->
+<div class="row">
+  <div class="col-sm-12" style="display: contents;">    
+    <div id="parent2" class="col-sm-4" style="font-family:sans-serif; margin-bottom: 12px; margin-left: 172px;">
+      <div class="child2"><button  id="button1" class="shrink-border">Bottom Waist:</button>
+        <input type="number" value="{{bottom.bottomWaist}}">
+      </div>
+    </div>
+    <div id="parent2" class="col-sm-4" style="font-family:sans-serif; margin-bottom: 12px;">
+      <div class="child2"><button id="button1"  class="shrink-border">Bottom Heap Round:</button>
+        <input type="number" value="{{bottom.bottomHeapRound}}">
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Separation 1 ends -->
+
+<!-- Separation 2 STARTS -->
+<div class="row">
+  <div class="col-sm-12">
+    
+<table class="table table-striped table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Mori</th>
+      <th scope="col">Length</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Salwar</th>
+      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{bottom.bottomSalwarMori}}"></td>
+      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{bottom.bottomSalwarLength}}"></td>
+    </tr>
+    <tr>
+      <th scope="row">Pant</th>
+      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{bottom.bottomPantMori}}"></td>
+      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{bottom.bottomPantLength}}"></td>
+    </tr>
+    <tr>
+      <th scope="row">Plazo</th>
+      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{bottom.bottomPlazoMori}}"></td>
+      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{bottom.bottomPlazoLength}}"></td>
+    </tr>
+    <tr>
+      <th scope="row">Chaniya</th>
+      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{bottom.bottomChaniyaMori}}"></td>
+      <td><input type="number" style="width: 50px; font-weight: bold;" value="{{bottom.bottomChaniyaLength}}"></td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+</div> 
+<!-- Separation 2 ENDS -->
+<!-- =========================================================BOTTOM DETAILS ENDS=========================================================-->
+<!-- DATE PICKER IN JQUERY -->
+<link href="https://code.jquery.com/ui/1.13.2/themes/pepper-grinder/jquery-ui.css" rel="stylesheet" />
+<script rel="preload" src="https://code.jquery.com/jquery-3.6.0.min.js" type="text/javascript"></script>
+<script rel="preload" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>
+<script>
+    $(document).ready(function () {
+        var date_input = $('input[name="date"]'); //our date input has the name "date"
+        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+        var options = {
+            format: 'dd/mm/yyyy',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+        };
+        date_input.datepicker(options);
+    })
+</script>
+{% endblock page %}

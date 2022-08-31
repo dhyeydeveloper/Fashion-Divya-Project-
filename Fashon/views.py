@@ -15,8 +15,15 @@ def customerCheck(request):
         return HttpResponse('fail')
 
 @login_required
-def detailsEdit(request, id):    
-    return render(request, 'fashion/customerDetailsEdit.html')
+def detailsEdit(request, id):   
+    if request.method == "GET": 
+        usr = Customer.objects.filter(id = id).first()
+        top_details = list(TopDetail.objects.filter(user = usr).values())[0]
+        bottom_details = list(BottomDetail.objects.filter(user = usr).values())[0]
+        data = {'user':usr, 'top':top_details, 'bottom':bottom_details}
+        return render(request, 'fashion/customerDetailsEdit.html', data)
+    # if request.method == "POST":
+
 
 @login_required
 def home(request):
