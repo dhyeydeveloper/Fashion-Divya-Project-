@@ -27,7 +27,7 @@ function dateFormat(inputDate, format) {
 
 
 // FOR SAVING DATA IN MODEL
-function postitem(index) {
+function postitem(button) {
 // INITIALIZING EMPTY DATA FOR ASSORTING
     let userData = {};
     let topData = {};
@@ -101,6 +101,9 @@ function postitem(index) {
             }
         }
 
+    if (button == undefined){
+        button = "";
+    };
     if (Object.keys(userData).length == 4 && Object.keys(topData).length == 25 && Object.keys(bottomData).length == 10){
         $.ajax({
             url: "/create/",
@@ -111,7 +114,12 @@ function postitem(index) {
                     alert("The Customer already exists. Please check in My Customer")
                 }
                 else{
-                    window.location.href = "/details/"+resp
+                    if (button != 'print'){
+                        window.location.href = ("/details/"+resp)
+                    }
+                    else if(button == "print"){
+                        window.location.href = ("/details/"+'p/'+resp)
+                    }
                 }
             },
     

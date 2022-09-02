@@ -1,5 +1,6 @@
 from xml.etree.ElementInclude import include
 from django.shortcuts import render, redirect, HttpResponse
+from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .models import *
 from django.contrib.auth.decorators import login_required
@@ -97,6 +98,8 @@ def login(request):
 def createOrder(request):
     if request.method == "POST":
         data = request.POST
+        # button = eval(list(data.keys())[0]).pop('button')
+        # print(button,"+++++++++++++++++")
         cnt = 0
         for item in eval(list(data.keys())[0]).values():
             if cnt == 0:
@@ -149,6 +152,8 @@ def createOrder(request):
 
                 userBottom.save() 
 
+        # if (eval(list(data.keys())[0])['button']) == 'print':
+        #     return HttpResponse(user.id)
         return HttpResponse(user.id)
     return render(request,'fashion/create_order.html')
 

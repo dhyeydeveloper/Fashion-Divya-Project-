@@ -30,6 +30,7 @@ urlpatterns = [
     re_path(r'home/', home, name="home"),
     re_path(r'create/', createOrder, name="createUrl"),
     re_path(r'details/(?P<id>\d{1,10})/$', customerDetails, name="customDetail"),
+    re_path(r'details/p/(?P<id>\d{1,10})/$', customerDetails, name="customDetailPrint"),
     re_path(r'check/', customerCheck, name="checkUrl"),
     re_path(r'delete/', deleteCustomer, name="deleteUrl"),
     re_path(r'details_edit/(?P<id>\d{1,20})/$', detailsEdit, name="detailsEditUrl"),

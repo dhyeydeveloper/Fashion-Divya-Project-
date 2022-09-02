@@ -26,7 +26,7 @@ function dateFormat(inputDate, format) {
 
 
 // FOR SAVING DATA IN MODEL
-function postitem(index) {
+function postitem(button) {
 // INITIALIZING EMPTY DATA FOR ASSORTING
   let userData = {};
   let topData = {};
@@ -103,16 +103,26 @@ function postitem(index) {
           }
       }
 
-
+    if (button == undefined){
+    button = "";
+    };
     if (Object.keys(userData).length == 4 && Object.keys(topData).length == 25 && Object.keys(bottomData).length == 10){
         $.ajax({
             url: "/details_edit/"+id+"/",
             method : 'POST',
             data:  JSON.stringify({'userData':userData, 'topData':topData,'bottomData':bottomData}),
             success: function(resp){
-                if (resp == "success"){
-                  window.location.href = "/details/"+id
+                if (button != 'print'){
+                    if (resp == "success"){
+                        window.location.href = "/details/"+id
+                    }
                 }
+                else if(button == "print"){
+                    if (resp == "success"){
+                        window.location.href = ("/details/"+'p/'+id)
+                    }
+                }
+
             },
     
         });
