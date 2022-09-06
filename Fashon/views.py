@@ -7,6 +7,13 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login as auth_login, logout
 
 # Create your views here.
+def allCustomerView(request):
+    customers = Customer.objects.all()
+    print(customers)
+    return render(request, 'fashion/myCustomers.html')
+
+
+
 @login_required
 def customerCheck(request):
     user = Customer.objects.filter(userPhone = list(request.GET.keys())[0]).first()

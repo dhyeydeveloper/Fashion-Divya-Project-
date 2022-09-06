@@ -23,6 +23,7 @@ urlpatterns = [
     path(r'test/', test, name="test"),
     path(r'', home, name="index"),
     path(r'type/', customerType, name="customerTypeUrl"),
+    path(r'myCustomers/', allCustomerView, name="Customers"),
 
 # ALL REPATH API's
     re_path(r'login/', login, name='loginUrl'),
@@ -34,4 +35,5 @@ urlpatterns = [
     re_path(r'check/', customerCheck, name="checkUrl"),
     re_path(r'delete/', deleteCustomer, name="deleteUrl"),
     re_path(r'details_edit/(?P<id>\d{1,20})/$', detailsEdit, name="detailsEditUrl"),
+
 ]
