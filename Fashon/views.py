@@ -5,6 +5,8 @@ from .models import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login as auth_login, logout
 from django.db.models import Q
+from datetime import date, datetime
+from datetime import datetime as dt
 
 # Create your views here.
 @login_required
@@ -46,6 +48,21 @@ def detailsEdit(request, id):
             if 'user' in list(item.keys())[0]:
                 user = Customer.objects.filter(id= id)
                 user.update(userName = list(item.values())[0], userDeliveryDate= list(item.values())[2], userPhone= list(item.values())[1], userAdvance= list(item.values())[3])
+
+                today = datetime.today()
+                # convert string to date object
+                givenDate = dt.strptime(list(item.values())[2], "%Y-%m-%d")
+                delta =  (givenDate - today).days
+                if delta > 0:
+                    if delta < 20:
+                        priority = "high"
+                    elif delta < 40:
+                        priority = "medium"
+                    else:
+                        priority = "low"
+
+                    makeOrder = OrderCreate.objects.create(user= user, orderDate= list(item.values())[1], priority = priority)
+                    makeOrder.save()
 
             elif 'top' in list(item.keys())[0]:
                 userTop = TopDetail.objects.filter(user__id = id)
@@ -114,8 +131,6 @@ def login(request):
 def createOrder(request):
     if request.method == "POST":
         data = request.POST
-        # button = eval(list(data.keys())[0]).pop('button')
-        # print(button,"+++++++++++++++++")
         cnt = 0
         for item in eval(list(data.keys())[0]).values():
             if cnt == 0:
@@ -125,9 +140,23 @@ def createOrder(request):
                     return HttpResponse("exists")
                 cnt+=1
             if 'user' in list(item.keys())[0]:
-                usrPhone = list(item.values())[2]
                 user = Customer.objects.create(userName = list(item.values())[0], userDeliveryDate= list(item.values())[1], userPhone= list(item.values())[2], userAdvance= list(item.values())[3])
                 user.save()
+
+                today = datetime.today()
+                # convert string to date object
+                givenDate = dt.strptime(list(item.values())[1], "%Y-%m-%d")
+                delta =  (givenDate - today).days 
+                if delta > 0:
+                    if delta < 20:
+                        priority = "high"
+                    elif delta < 40:
+                        priority = "medium"
+                    else:
+                        priority = "low"
+
+                    makeOrder = OrderCreate.objects.create(user= user, orderDate= list(item.values())[1], priority = priority)
+                    makeOrder.save()
             
             elif 'top' in list(item.keys())[0]:
                 userTop = TopDetail.objects.create(user = user,chest1 = list(item.values())[0], chest2= list(item.values())[1], shoulder= list(item.values())[2], topheapRound= list(item.values())[3], 
@@ -168,8 +197,6 @@ def createOrder(request):
 
                 userBottom.save() 
 
-        # if (eval(list(data.keys())[0])['button']) == 'print':
-        #     return HttpResponse(user.id)
         return HttpResponse(user.id)
     return render(request,'fashion/create_order.html')
 

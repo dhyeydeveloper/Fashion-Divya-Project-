@@ -11,6 +11,12 @@ class Customer(models.Model):
     def __int__(self):
         return self.userPhone
 
+priority_choices = (("high","High"),("medium","Medium"),("low","Low"))
+class OrderCreate(models.Model):
+    user = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    orderDate = models.DateField()
+    priority = models.CharField(max_length=20, choices=priority_choices)
+
 
 class TopDetail(models.Model):
     user = models.ForeignKey(Customer, on_delete=models.CASCADE)
@@ -51,6 +57,7 @@ class TopDetail(models.Model):
 
 
 class BottomDetail(models.Model):
+
     user = models.ForeignKey(Customer, on_delete=models.CASCADE)
     bottomWaist = models.IntegerField()
     bottomHeapRound = models.IntegerField()
@@ -73,3 +80,4 @@ class BottomDetail(models.Model):
 
     def __str__(self):
         return self.user.userName
+
