@@ -25,7 +25,7 @@ numb.addEventListener('input', (e) => {
                     found.style.display = "block"
                     checkBtn.style.display = ""
                     checkBtn.addEventListener('click', (e)=>{
-                        window.location.href = '/details/'+ resp
+                        window.location.href = '/details/'+ resp +'/'
                     })
                 }
                 else if (resp == 'fail'){

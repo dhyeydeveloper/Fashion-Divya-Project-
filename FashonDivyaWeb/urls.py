@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, re_path
 from Fashon.views import *
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
 # ALL ONLY PATH API
@@ -24,16 +26,17 @@ urlpatterns = [
     path(r'', home, name="index"),
     path(r'type/', customerType, name="customerTypeUrl"),
     path(r'myCustomers/', allCustomerView, name="Customers"),
+    path(r'pendingOrder/',pendingOrder, name="pendingOrderUrl"),
 
 # ALL REPATH API's
     re_path(r'login/', login, name='loginUrl'),
     re_path(r'logout/', logoutView, name= "logoutUrl"),
     re_path(r'home/', home, name="home"),
     re_path(r'create/', createOrder, name="createUrl"),
-    re_path(r'details/(?P<id>\d{1,10})/$', customerDetails, name="customDetail"),
-    re_path(r'details/p/(?P<id>\d{1,10})/$', customerDetails, name="customDetailPrint"),
+    re_path(r'details/(?P<id>\d{1,})/$', customerDetails, name="customDetail"),
+    re_path(r'details/p/(?P<id>\d{1,})/$', customerDetails, name="customDetailPrint"),
     re_path(r'check/', customerCheck, name="checkUrl"),
     re_path(r'delete/', deleteCustomer, name="deleteUrl"),
     re_path(r'details_edit/(?P<id>\d{1,20})/$', detailsEdit, name="detailsEditUrl"),
-
 ]
+

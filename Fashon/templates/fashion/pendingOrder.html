@@ -1,0 +1,8 @@
+{% extends "fashion/low_base.html" %}
+{% load static %}
+{% block navpage %}
+<li><a class="nav-link" href="{% url 'customerTypeUrl' %}">Create Order</a></li>
+<li><a style="font-size: 27px; color:beige; font-weight: bolder; text-shadow: 0 0 8px black" class="nav-link" href="#">Pending Orders</a></li>
+<li><a class="nav-link" href="#">Pending Delivery</a></li>
+<li><a class="nav-link" href="{% url 'Customers' %}">My Customers</a></li>
+{% endblock navpage %}

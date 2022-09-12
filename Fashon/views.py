@@ -1,17 +1,26 @@
-from xml.etree.ElementInclude import include
 from django.shortcuts import render, redirect, HttpResponse
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .models import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login as auth_login, logout
+from django.db.models import Q
 
 # Create your views here.
+@login_required
 def allCustomerView(request):
-    customers = Customer.objects.all()
-    print(customers)
-    return render(request, 'fashion/myCustomers.html')
+    query = request.GET.get('value')
+    if query is None:
+        customers = Customer.objects.all()
+        customerCount = len(customers)
+        return render(request, 'fashion/myCustomers.html',{'customers':customers,'customerCount':customerCount})
+    else:
+        customers = list(Customer.objects.filter(Q(userName__icontains=query) | Q(userPhone__icontains= query)).values())
+        return JsonResponse(customers,safe=False)
 
+@login_required
+def pendingOrder(request):
+    return render(request, 'fashion/pendingOrder.html')
 
 
 @login_required
