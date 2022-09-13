@@ -10,6 +10,9 @@ class Customer(models.Model):
 
     def __int__(self):
         return self.userPhone
+    
+    def __str__(self):
+        return self.userName
 
 priority_choices = (("high","High"),("medium","Medium"),("low","Low"))
 class OrderCreate(models.Model):
@@ -17,6 +20,9 @@ class OrderCreate(models.Model):
     orderDate = models.DateField()
     priority = models.CharField(max_length=20, choices=priority_choices)
 
+    @property
+    def username(self):
+        return self.user.userName
 
 class TopDetail(models.Model):
     user = models.ForeignKey(Customer, on_delete=models.CASCADE)

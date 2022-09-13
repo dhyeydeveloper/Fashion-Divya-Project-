@@ -4,11 +4,13 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login as auth_login, logout
-from django.db.models import Q
+from django.db.models import Q, Count, DateField, CharField, Case
 from datetime import date, datetime
+from django.db.models.functions import TruncDate, Trunc
 from datetime import datetime as dt
 
 # Create your views here.
+
 @login_required
 def allCustomerView(request):
     query = request.GET.get('value')
@@ -22,6 +24,29 @@ def allCustomerView(request):
 
 @login_required
 def pendingOrder(request):
+    allDates = [date['orderDate'] for date in OrderCreate.objects.order_by('orderDate').values('orderDate').distinct()]
+    allOrders = OrderCreate.objects.all().values()
+    fetchOrder = {}
+    for dates in allDates:
+        fdDate = dates.strftime("%d-%m-%Y")
+        for orders in allOrders:
+            if  fdDate == orders['orderDate'].strftime("%d-%m-%Y"):
+                if  fdDate in fetchOrder:
+                    tempOrder = fetchOrder[fdDate]
+                    user = Customer.objects.filter(id=orders['user_id']).values()
+                    orders.pop('user_id')
+                    orders['user'] = user[0] 
+                    tempOrder.append(orders)
+                else:
+                    user = Customer.objects.filter(id=orders['user_id']).values()
+                    orders.pop('user_id')
+                    orders['user'] = user[0] 
+                    fetchOrder[fdDate] = [orders]
+                    
+    return JsonResponse(fetchOrder, safe=False)
+
+@login_required
+def pendingOrderHtml(request):
     return render(request, 'fashion/pendingOrder.html')
 
 
