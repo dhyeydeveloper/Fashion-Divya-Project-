@@ -37,7 +37,9 @@ urlpatterns = [
     re_path(r'details/p/(?P<id>\d{1,})/$', customerDetails, name="customDetailPrint"),
     re_path(r'check/', customerCheck, name="checkUrl"),
     re_path(r'delete/', deleteCustomer, name="deleteUrl"),
-    re_path(r'details_edit/(?P<id>\d{1,20})/$', detailsEdit, name="detailsEditUrl"),
+    re_path(r'details_edit/(?P<id>\d{1,20})/', detailsEdit, name="detailsEditUrl"),
     re_path(r'pendingOrderJs/',pendingOrder, name="pendingOrderUrl"),
+    re_path(r'deleteOrder',deleteOrderView, name="deleteOrderUrl"),
+    re_path(r'pendingCreate',pendingOrderCreate, name="pendingPostUrl")
 ]
 

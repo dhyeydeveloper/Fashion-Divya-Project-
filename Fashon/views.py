@@ -1,3 +1,4 @@
+from re import I
 from django.shortcuts import render, redirect, HttpResponse
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -10,6 +11,25 @@ from django.db.models.functions import TruncDate, Trunc
 from datetime import datetime as dt
 
 # Create your views here.
+@csrf_exempt
+@login_required
+def pendingOrderCreate(request):
+    id= request.POST.get('id')
+    user = Customer.objects.get(id= id)
+    today = datetime.today()
+    givenDate = dt.strptime(str(user.userDeliveryDate), "%Y-%m-%d")
+    delta =  (givenDate - today).days
+    if delta > 0:
+        if delta < 20:
+            priority = "High"
+        elif delta < 40:
+            priority = "Medium"
+        else:
+            priority = "Low"
+
+        makeOrder = OrderCreate.objects.create(user= user, orderDate= user.userDeliveryDate, priority = priority)
+        makeOrder.save()
+    return JsonResponse('success', safe=False)
 
 @login_required
 def allCustomerView(request):
@@ -24,6 +44,49 @@ def allCustomerView(request):
 
 @login_required
 def pendingOrder(request):
+    dateQuery = request.GET.get('date')
+    if dateQuery is not None and dateQuery != "":
+        allDates = [date['orderDate'] for date in OrderCreate.objects.order_by('orderDate').values('orderDate').distinct()]
+        allOrders = OrderCreate.objects.filter(orderDate = dateQuery).values()
+        fetchOrder = {}
+        for dates in allDates:
+            fdDate = dates.strftime("%d-%m-%Y")
+            for orders in allOrders:
+                if  fdDate == orders['orderDate'].strftime("%d-%m-%Y"):
+                    if  fdDate in fetchOrder:
+                        tempOrder = fetchOrder[fdDate]
+                        user = Customer.objects.filter(id=orders['user_id']).values()
+                        orders.pop('user_id')
+                        orders['user'] = user[0] 
+                        tempOrder.append(orders)
+                    else:
+                        user = Customer.objects.filter(id=orders['user_id']).values()
+                        orders.pop('user_id')
+                        orders['user'] = user[0] 
+                        fetchOrder[fdDate] = [orders]
+        return JsonResponse(fetchOrder, safe=False)
+
+    query = request.GET.get('value')
+    if query is not None and query != "":
+        allDates = [date['orderDate'] for date in OrderCreate.objects.order_by('orderDate').values('orderDate').distinct()]
+        allOrders = OrderCreate.objects.filter(Q(user__userName__icontains=query) | Q(user__userPhone__icontains= query) | Q(priority__icontains= query)).values()
+        fetchOrder = {}
+        for dates in allDates:
+            fdDate = dates.strftime("%d-%m-%Y")
+            for orders in allOrders:
+                if  fdDate == orders['orderDate'].strftime("%d-%m-%Y"):
+                    if  fdDate in fetchOrder:
+                        tempOrder = fetchOrder[fdDate]
+                        user = Customer.objects.filter(id=orders['user_id']).values()
+                        orders.pop('user_id')
+                        orders['user'] = user[0] 
+                        tempOrder.append(orders)
+                    else:
+                        user = Customer.objects.filter(id=orders['user_id']).values()
+                        orders.pop('user_id')
+                        orders['user'] = user[0] 
+                        fetchOrder[fdDate] = [orders]
+        return JsonResponse(fetchOrder, safe=False)
     allDates = [date['orderDate'] for date in OrderCreate.objects.order_by('orderDate').values('orderDate').distinct()]
     allOrders = OrderCreate.objects.all().values()
     fetchOrder = {}
@@ -44,6 +107,32 @@ def pendingOrder(request):
                     fetchOrder[fdDate] = [orders]
                     
     return JsonResponse(fetchOrder, safe=False)
+
+@login_required
+def deleteOrderView(request):
+    item = OrderCreate.objects.get(id=request.GET.get('id'))
+    item.delete()
+    allDates = [date['orderDate'] for date in OrderCreate.objects.order_by('orderDate').values('orderDate').distinct()]
+    allOrders = OrderCreate.objects.all().values()
+    fetchOrder = {}
+    for dates in allDates:
+        fdDate = dates.strftime("%d-%m-%Y")
+        for orders in allOrders:
+            if  fdDate == orders['orderDate'].strftime("%d-%m-%Y"):
+                if  fdDate in fetchOrder:
+                    tempOrder = fetchOrder[fdDate]
+                    user = Customer.objects.filter(id=orders['user_id']).values()
+                    orders.pop('user_id')
+                    orders['user'] = user[0] 
+                    tempOrder.append(orders)
+                else:
+                    user = Customer.objects.filter(id=orders['user_id']).values()
+                    orders.pop('user_id')
+                    orders['user'] = user[0] 
+                    fetchOrder[fdDate] = [orders]
+                    
+    return JsonResponse(fetchOrder, safe=False)
+
 
 @login_required
 def pendingOrderHtml(request):
@@ -69,63 +158,66 @@ def detailsEdit(request, id):
         return render(request, 'fashion/customerDetailsEdit.html', data)
     if request.method == "POST":
         data = request.POST
+        button = eval(list(data.keys())[0])['button']
         for item in eval(list(data.keys())[0]).values():
-            if 'user' in list(item.keys())[0]:
-                user = Customer.objects.filter(id= id)
-                user.update(userName = list(item.values())[0], userDeliveryDate= list(item.values())[2], userPhone= list(item.values())[1], userAdvance= list(item.values())[3])
+            if type(item) != str:
+                if 'user' in list(item.keys())[0]:
+                    user = Customer.objects.filter(id= id)
+                    user.update(userName = list(item.values())[0], userDeliveryDate= list(item.values())[2], userPhone= list(item.values())[1], userAdvance= list(item.values())[3])
 
-                today = datetime.today()
-                # convert string to date object
-                givenDate = dt.strptime(list(item.values())[2], "%Y-%m-%d")
-                delta =  (givenDate - today).days
-                if delta > 0:
-                    if delta < 20:
-                        priority = "high"
-                    elif delta < 40:
-                        priority = "medium"
-                    else:
-                        priority = "low"
+                    if button == "print":
+                        today = datetime.today()
+                        # convert string to date object
+                        givenDate = dt.strptime(list(item.values())[2], "%Y-%m-%d")
+                        delta =  (givenDate - today).days
+                        if delta > 0:
+                            if delta < 20:
+                                priority = "High"
+                            elif delta < 40:
+                                priority = "Medium"
+                            else:
+                                priority = "Low"
 
-                    makeOrder = OrderCreate.objects.create(user= user, orderDate= list(item.values())[1], priority = priority)
-                    makeOrder.save()
+                            makeOrder = OrderCreate.objects.create(user= user.first(), orderDate= list(item.values())[2], priority = priority)
+                            makeOrder.save()
 
-            elif 'top' in list(item.keys())[0]:
-                userTop = TopDetail.objects.filter(user__id = id)
-                userTop.update(chest1 = list(item.values())[0], chest2= list(item.values())[1], shoulder= list(item.values())[2], topheapRound= list(item.values())[3], 
-                # KURTI DATA
-                topKurtiArmHole = list(item.values())[4], topKurtiWaist = list(item.values())[5],
-                topKurtiLength = list(item.values())[6], topKurtiSleeveL = list(item.values())[7], 
-                topKurtiSleeveR = list(item.values())[8], topKurtiNeckF = list(item.values())[9], 
-                topKurtiNeckB = list(item.values())[10], 
+                elif 'top' in list(item.keys())[0]:
+                    userTop = TopDetail.objects.filter(user__id = id)
+                    userTop.update(chest1 = list(item.values())[0], chest2= list(item.values())[1], shoulder= list(item.values())[2], topheapRound= list(item.values())[3], 
+                    # KURTI DATA
+                    topKurtiArmHole = list(item.values())[4], topKurtiWaist = list(item.values())[5],
+                    topKurtiLength = list(item.values())[6], topKurtiSleeveL = list(item.values())[7], 
+                    topKurtiSleeveR = list(item.values())[8], topKurtiNeckF = list(item.values())[9], 
+                    topKurtiNeckB = list(item.values())[10], 
 
-                # GOWN DATA
-                topGownArmHole = list(item.values())[11], topGownWaist = list(item.values())[12],
-                topGownLength = list(item.values())[13], topGownSleeveL = list(item.values())[14], 
-                topGownSleeveR = list(item.values())[15], topGownNeckF = list(item.values())[16], 
-                topGownNeckB = list(item.values())[17], 
+                    # GOWN DATA
+                    topGownArmHole = list(item.values())[11], topGownWaist = list(item.values())[12],
+                    topGownLength = list(item.values())[13], topGownSleeveL = list(item.values())[14], 
+                    topGownSleeveR = list(item.values())[15], topGownNeckF = list(item.values())[16], 
+                    topGownNeckB = list(item.values())[17], 
 
-                # BLOUSE DATA
-                topBlouseArmHole = list(item.values())[18], topBlouseWaist = list(item.values())[19],
-                topBlouseLength = list(item.values())[20], topBlouseSleeveL = list(item.values())[21], 
-                topBlouseSleeveR = list(item.values())[22], topBlouseNeckF = list(item.values())[23], 
-                topBlouseNeckB = list(item.values())[24], 
-                )
+                    # BLOUSE DATA
+                    topBlouseArmHole = list(item.values())[18], topBlouseWaist = list(item.values())[19],
+                    topBlouseLength = list(item.values())[20], topBlouseSleeveL = list(item.values())[21], 
+                    topBlouseSleeveR = list(item.values())[22], topBlouseNeckF = list(item.values())[23], 
+                    topBlouseNeckB = list(item.values())[24], 
+                    )
 
-            elif 'bottom' in list(item.keys())[0]:
-                userBottom = BottomDetail.objects.filter(user__id = id)
-                userBottom.update(bottomWaist = list(item.values())[0], bottomHeapRound = list(item.values())[1],
+                elif 'bottom' in list(item.keys())[0]:
+                    userBottom = BottomDetail.objects.filter(user__id = id)
+                    userBottom.update(bottomWaist = list(item.values())[0], bottomHeapRound = list(item.values())[1],
 
-                # FOR SALWAR
-                bottomSalwarMori = list(item.values())[2], bottomSalwarLength = list(item.values())[3], 
+                    # FOR SALWAR
+                    bottomSalwarMori = list(item.values())[2], bottomSalwarLength = list(item.values())[3], 
 
-                # FOR PANT 
-                bottomPantMori = list(item.values())[4], bottomPantLength = list(item.values())[5], 
+                    # FOR PANT 
+                    bottomPantMori = list(item.values())[4], bottomPantLength = list(item.values())[5], 
 
-                # FOR PLAZO
-                bottomPlazoMori = list(item.values())[6], bottomPlazoLength = list(item.values())[7], 
+                    # FOR PLAZO
+                    bottomPlazoMori = list(item.values())[6], bottomPlazoLength = list(item.values())[7], 
 
-                # FOR PLAZO
-                bottomChaniyaMori = list(item.values())[8], bottomChaniyaLength = list(item.values())[9])
+                    # FOR PLAZO
+                    bottomChaniyaMori = list(item.values())[8], bottomChaniyaLength = list(item.values())[9])
         
         return HttpResponse('success')
 
@@ -157,6 +249,7 @@ def createOrder(request):
     if request.method == "POST":
         data = request.POST
         cnt = 0
+        button = eval(list(data.keys())[0])['button']
         for item in eval(list(data.keys())[0]).values():
             if cnt == 0:
                 phone = item['userPhone']
@@ -164,63 +257,66 @@ def createOrder(request):
                 if checkUser.exists():
                     return HttpResponse("exists")
                 cnt+=1
-            if 'user' in list(item.keys())[0]:
-                user = Customer.objects.create(userName = list(item.values())[0], userDeliveryDate= list(item.values())[1], userPhone= list(item.values())[2], userAdvance= list(item.values())[3])
-                user.save()
-
-                today = datetime.today()
-                # convert string to date object
-                givenDate = dt.strptime(list(item.values())[1], "%Y-%m-%d")
-                delta =  (givenDate - today).days 
-                if delta > 0:
-                    if delta < 20:
-                        priority = "high"
-                    elif delta < 40:
-                        priority = "medium"
-                    else:
-                        priority = "low"
-
-                    makeOrder = OrderCreate.objects.create(user= user, orderDate= list(item.values())[1], priority = priority)
-                    makeOrder.save()
             
-            elif 'top' in list(item.keys())[0]:
-                userTop = TopDetail.objects.create(user = user,chest1 = list(item.values())[0], chest2= list(item.values())[1], shoulder= list(item.values())[2], topheapRound= list(item.values())[3], 
-                # KURTI DATA
-                topKurtiArmHole = list(item.values())[4], topKurtiWaist = list(item.values())[5],
-                topKurtiLength = list(item.values())[6], topKurtiSleeveL = list(item.values())[7], 
-                topKurtiSleeveR = list(item.values())[8], topKurtiNeckF = list(item.values())[9], 
-                topKurtiNeckB = list(item.values())[10], 
+            if type(item) != str:
+                if 'user' in list(item.keys())[0]:
+                    user = Customer.objects.create(userName = list(item.values())[0], userDeliveryDate= list(item.values())[1], userPhone= list(item.values())[2], userAdvance= list(item.values())[3])
+                    user.save()
 
-                # GOWN DATA
-                topGownArmHole = list(item.values())[11], topGownWaist = list(item.values())[12],
-                topGownLength = list(item.values())[13], topGownSleeveL = list(item.values())[14], 
-                topGownSleeveR = list(item.values())[15], topGownNeckF = list(item.values())[16], 
-                topGownNeckB = list(item.values())[17], 
+                    if button == "print":
+                        today = datetime.today()
+                        # convert string to date object
+                        givenDate = dt.strptime(list(item.values())[1], "%Y-%m-%d")
+                        delta =  (givenDate - today).days
+                        if delta > 0:
+                            if delta < 20:
+                                priority = "High"
+                            elif delta < 40:
+                                priority = "Medium"
+                            else:
+                                priority = "Low"
 
-                # BLOUSE DATA
-                topBlouseArmHole = list(item.values())[18], topBlouseWaist = list(item.values())[19],
-                topBlouseLength = list(item.values())[20], topBlouseSleeveL = list(item.values())[21], 
-                topBlouseSleeveR = list(item.values())[22], topBlouseNeckF = list(item.values())[23], 
-                topBlouseNeckB = list(item.values())[24], 
-                )
-                userTop.save()
+                            makeOrder = OrderCreate.objects.create(user= user, orderDate= list(item.values())[1], priority = priority)
+                            makeOrder.save()
                 
-            elif 'bottom' in list(item.keys())[0]:
-                userBottom = BottomDetail.objects.create(user =user, bottomWaist = list(item.values())[0], bottomHeapRound = list(item.values())[1],
+                elif 'top' in list(item.keys())[0]:
+                    userTop = TopDetail.objects.create(user = user,chest1 = list(item.values())[0], chest2= list(item.values())[1], shoulder= list(item.values())[2], topheapRound= list(item.values())[3], 
+                    # KURTI DATA
+                    topKurtiArmHole = list(item.values())[4], topKurtiWaist = list(item.values())[5],
+                    topKurtiLength = list(item.values())[6], topKurtiSleeveL = list(item.values())[7], 
+                    topKurtiSleeveR = list(item.values())[8], topKurtiNeckF = list(item.values())[9], 
+                    topKurtiNeckB = list(item.values())[10], 
 
-                # FOR SALWAR
-                bottomSalwarMori = list(item.values())[2], bottomSalwarLength = list(item.values())[3], 
+                    # GOWN DATA
+                    topGownArmHole = list(item.values())[11], topGownWaist = list(item.values())[12],
+                    topGownLength = list(item.values())[13], topGownSleeveL = list(item.values())[14], 
+                    topGownSleeveR = list(item.values())[15], topGownNeckF = list(item.values())[16], 
+                    topGownNeckB = list(item.values())[17], 
 
-                # FOR PANT 
-                bottomPantMori = list(item.values())[4], bottomPantLength = list(item.values())[5], 
+                    # BLOUSE DATA
+                    topBlouseArmHole = list(item.values())[18], topBlouseWaist = list(item.values())[19],
+                    topBlouseLength = list(item.values())[20], topBlouseSleeveL = list(item.values())[21], 
+                    topBlouseSleeveR = list(item.values())[22], topBlouseNeckF = list(item.values())[23], 
+                    topBlouseNeckB = list(item.values())[24], 
+                    )
+                    userTop.save()
+                    
+                elif 'bottom' in list(item.keys())[0]:
+                    userBottom = BottomDetail.objects.create(user =user, bottomWaist = list(item.values())[0], bottomHeapRound = list(item.values())[1],
 
-                # FOR PLAZO
-                bottomPlazoMori = list(item.values())[6], bottomPlazoLength = list(item.values())[7], 
+                    # FOR SALWAR
+                    bottomSalwarMori = list(item.values())[2], bottomSalwarLength = list(item.values())[3], 
 
-                # FOR PLAZO
-                bottomChaniyaMori = list(item.values())[8], bottomChaniyaLength = list(item.values())[9])
+                    # FOR PANT 
+                    bottomPantMori = list(item.values())[4], bottomPantLength = list(item.values())[5], 
 
-                userBottom.save() 
+                    # FOR PLAZO
+                    bottomPlazoMori = list(item.values())[6], bottomPlazoLength = list(item.values())[7], 
+
+                    # FOR PLAZO
+                    bottomChaniyaMori = list(item.values())[8], bottomChaniyaLength = list(item.values())[9])
+
+                    userBottom.save() 
 
         return HttpResponse(user.id)
     return render(request,'fashion/create_order.html')
@@ -238,7 +334,8 @@ def deleteCustomer(request):
     id = list(request.GET.keys())[0]
     customer = Customer.objects.get(id = id)
     customer.delete()
-    return HttpResponse('success')
+    customers = list(Customer.objects.all().values())
+    return JsonResponse(customers,safe=False)
 
 
 @login_required

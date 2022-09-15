@@ -14,7 +14,7 @@ class Customer(models.Model):
     def __str__(self):
         return self.userName
 
-priority_choices = (("high","High"),("medium","Medium"),("low","Low"))
+priority_choices = (("High","High"),("Medium","Medium"),("Low","Low"))
 class OrderCreate(models.Model):
     user = models.ForeignKey(Customer, on_delete=models.CASCADE)
     orderDate = models.DateField()

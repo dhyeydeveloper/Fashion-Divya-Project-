@@ -103,14 +103,11 @@ function postitem(button) {
           }
       }
 
-    if (button == undefined){
-    button = "";
-    };
     if (Object.keys(userData).length == 4 && Object.keys(topData).length == 25 && Object.keys(bottomData).length == 10){
         $.ajax({
             url: "/details_edit/"+id+"/",
             method : 'POST',
-            data:  JSON.stringify({'userData':userData, 'topData':topData,'bottomData':bottomData}),
+            data:  JSON.stringify({'userData':userData, 'topData':topData,'bottomData':bottomData,'button':button}),
             success: function(resp){
                 if (button != 'print'){
                     if (resp == "success"){

@@ -58,7 +58,7 @@
               <div class="col-sm-12">
                 <button class="btn btn-info " style="width: 100px; margin-bottom: 10px;" target="__blank" id="edit">Edit</button>
                 <button class="btn btn-danger" style="width: 100px; margin: -10px 0 0 5px;" id="delete" data-fid="@item.ForkliftID" data-toggle="modal" data-target="#DeleteConfirmationModal">Delete</button>
-                <button class="btn btn-warning" style="width: 100px; margin: -10px 0 0 5px;" target="__blank"  onclick="window.print()" id="print">Print</button> 
+                <button class="btn btn-warning" style="width: 100px; margin: -10px 0 0 5px;" target="__blank"  onclick="orderCreate(); window.print();" id="print">Print</button> 
               </div>
         </div>
     </div> 
@@ -322,5 +322,18 @@
       }, 1000);
     };
   };
+</script>
+
+<script>
+  function orderCreate(){
+    link = window.location.href.toString()
+    let splitURL=link.toString().split("/");
+    id = splitURL[splitURL.length -2]
+    $.ajax({
+            url: "/pendingCreate/",
+            method : 'POST',
+            data:  {'id':id},
+        });
+  }
 </script>
 {% endblock page %}

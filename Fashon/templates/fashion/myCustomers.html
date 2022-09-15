@@ -33,11 +33,11 @@
       <div id="CustomerCards" class="profile-container">
         <!-- SINGLE CARD STARTS -->
         {% for customer in customers %}
-            <div class="profile-card">
+            <div onclick="detailsID(this.id)" id="{{customer.userPhone}}" class="profile-card">
               <img src="{% static 'fashon/img/lady.jpg' %}" alt="image1" class="profile-icon" />
               <div class="profile-name">{{customer.userName}}</div>
               <div class="profile-position">Mob: {{customer.userPhone}}</div>
-              <button class="button" onclick="detailsID(this.id)" id="{{customer.userPhone}}">Open Details</button>
+              <button class="button" onclick="deleteID(this.id); event.stopPropagation()" id="{{customer.id}}">Delete</button>
             </div>
         {% endfor %}
         <!-- SINGLE CARD ENDS -->

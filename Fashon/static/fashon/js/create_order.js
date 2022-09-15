@@ -101,14 +101,11 @@ function postitem(button) {
             }
         }
 
-    if (button == undefined){
-        button = "";
-    };
     if (Object.keys(userData).length == 4 && Object.keys(topData).length == 25 && Object.keys(bottomData).length == 10){
         $.ajax({
             url: "/create/",
             method : 'POST',
-            data:  JSON.stringify({'userData':userData, 'topData':topData,'bottomData':bottomData}),
+            data:  JSON.stringify({'userData':userData, 'topData':topData,'bottomData':bottomData,'button':button}),
             success: function(resp){
                 if (resp === "exists"){
                     alert("The Customer already exists. Please check in My Customer")
