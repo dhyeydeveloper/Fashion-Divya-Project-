@@ -1,25 +1,130 @@
-from re import I
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, HttpResponse
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .models import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login as auth_login, logout
-from django.db.models import Q, Count, DateField, CharField, Case
+from django.db.models import Q
 from datetime import date, datetime
-from django.db.models.functions import TruncDate, Trunc
 from datetime import datetime as dt
 
 # Create your views here.
+@login_required
+def pendingDeliveryHtml(request):
+    return render(request, 'fashion/pendingDelivery.html')
+
+@csrf_exempt
+@login_required
+def deliveryCreate(request):
+    id= request.POST.get('id')
+    user_id = OrderCreate.objects.filter(id= id).values_list('user', flat=True)[0]
+    user = Customer.objects.get(id = user_id)
+    deliveryOrderObj = PendingDelivery.objects.create(user= user, deliverDate= user.userDeliveryDate)
+    deliveryOrderObj.save()
+    return JsonResponse('success', safe=False)
+
+@login_required
+def deliveryOrder(request):
+    dateQuery = request.GET.get('date')
+    if dateQuery is not None and dateQuery != "":
+        allDates = [date['deliverDate'] for date in PendingDelivery.objects.order_by('deliverDate').values('deliverDate').distinct()]
+        allOrders = PendingDelivery.objects.filter(deliverDate = dateQuery).values()
+        fetchOrder = {}
+        for dates in allDates:
+            fdDate = dates.strftime("%d-%m-%Y")
+            for orders in allOrders:
+                if  fdDate == orders['deliverDate'].strftime("%d-%m-%Y"):
+                    if  fdDate in fetchOrder:
+                        tempOrder = fetchOrder[fdDate]
+                        user = Customer.objects.filter(id=orders['user_id']).values()
+                        orders.pop('user_id')
+                        orders['user'] = user[0] 
+                        tempOrder.append(orders)
+                    else:
+                        user = Customer.objects.filter(id=orders['user_id']).values()
+                        orders.pop('user_id')
+                        orders['user'] = user[0] 
+                        fetchOrder[fdDate] = [orders]
+        return JsonResponse(fetchOrder, safe=False)
+
+    query = request.GET.get('value')
+    if query is not None and query != "":
+        allDates = [date['deliverDate'] for date in PendingDelivery.objects.order_by('deliverDate').values('deliverDate').distinct()]
+        allOrders = PendingDelivery.objects.filter(Q(user__userName__icontains=query) | Q(user__userPhone__icontains= query)).values()
+        fetchOrder = {}
+        for dates in allDates:
+            fdDate = dates.strftime("%d-%m-%Y")
+            for orders in allOrders:
+                if  fdDate == orders['deliverDate'].strftime("%d-%m-%Y"):
+                    if  fdDate in fetchOrder:
+                        tempOrder = fetchOrder[fdDate]
+                        user = Customer.objects.filter(id=orders['user_id']).values()
+                        orders.pop('user_id')
+                        orders['user'] = user[0] 
+                        tempOrder.append(orders)
+                    else:
+                        user = Customer.objects.filter(id=orders['user_id']).values()
+                        orders.pop('user_id')
+                        orders['user'] = user[0] 
+                        fetchOrder[fdDate] = [orders]
+        return JsonResponse(fetchOrder, safe=False)
+
+    allDates = [date['deliverDate'] for date in PendingDelivery.objects.order_by('deliverDate').values('deliverDate').distinct()]
+    allOrders = PendingDelivery.objects.all().values()
+    fetchOrder = {}
+    for dates in allDates:
+        fdDate = dates.strftime("%d-%m-%Y")
+        for orders in allOrders:
+            if  fdDate == orders['deliverDate'].strftime("%d-%m-%Y"):
+                if  fdDate in fetchOrder:
+                    tempOrder = fetchOrder[fdDate]
+                    user = Customer.objects.filter(id=orders['user_id']).values()
+                    orders.pop('user_id')
+                    orders['user'] = user[0] 
+                    tempOrder.append(orders)
+                else:
+                    user = Customer.objects.filter(id=orders['user_id']).values()
+                    orders.pop('user_id')
+                    orders['user'] = user[0] 
+                    fetchOrder[fdDate] = [orders]
+
+    return JsonResponse(fetchOrder, safe=False)
+
+@login_required
+def deleteDeliveryOrderView(request):
+    item = PendingDelivery.objects.get(id=request.GET.get('id'))
+    item.delete()
+    allDates = [date['deliverDate'] for date in PendingDelivery.objects.order_by('deliverDate').values('deliverDate').distinct()]
+    allOrders = PendingDelivery.objects.all().values()
+    fetchOrder = {}
+    for dates in allDates:
+        fdDate = dates.strftime("%d-%m-%Y")
+        for orders in allOrders:
+            if  fdDate == orders['deliverDate'].strftime("%d-%m-%Y"):
+                if  fdDate in fetchOrder:
+                    tempOrder = fetchOrder[fdDate]
+                    user = Customer.objects.filter(id=orders['user_id']).values()
+                    orders.pop('user_id')
+                    orders['user'] = user[0] 
+                    tempOrder.append(orders)
+                else:
+                    user = Customer.objects.filter(id=orders['user_id']).values()
+                    orders.pop('user_id')
+                    orders['user'] = user[0] 
+                    fetchOrder[fdDate] = [orders]
+                    
+    return JsonResponse(fetchOrder, safe=False)
+
+
 @csrf_exempt
 @login_required
 def pendingOrderCreate(request):
-    id= request.POST.get('id')
+    id= request.POST.get('id')  
     user = Customer.objects.get(id= id)
     today = datetime.today()
     givenDate = dt.strptime(str(user.userDeliveryDate), "%Y-%m-%d")
     delta =  (givenDate - today).days
-    if delta > 0:
+    if delta >= 0:
         if delta < 20:
             priority = "High"
         elif delta < 40:
@@ -29,7 +134,10 @@ def pendingOrderCreate(request):
 
         makeOrder = OrderCreate.objects.create(user= user, orderDate= user.userDeliveryDate, priority = priority)
         makeOrder.save()
-    return JsonResponse('success', safe=False)
+        return JsonResponse('success', safe=False)
+    else:
+        return JsonResponse('fail', safe=False)
+
 
 @login_required
 def allCustomerView(request):
@@ -87,6 +195,24 @@ def pendingOrder(request):
                         orders['user'] = user[0] 
                         fetchOrder[fdDate] = [orders]
         return JsonResponse(fetchOrder, safe=False)
+
+    import datetime as db
+    tod = dt.today()
+    # Less than equal to 20 days To High
+    date20ago = db.timedelta(days = 20)
+    a = tod + date20ago
+    date_20 = a.date()
+    OrderCreate.objects.filter(orderDate__lte = date_20).update(priority = 'High')
+
+    # Less than equal to 40 days To Medium
+    date40ago = db.timedelta(days = 40)
+    a = tod + date40ago
+    date_40 = a.date()
+    OrderCreate.objects.filter(orderDate__lte = date_40).exclude(orderDate__lte = date_20).update(priority = 'Medium')
+
+    # Greater than 40 days To Low
+    OrderCreate.objects.exclude(orderDate__lte = date_40).update(priority = 'Low')
+
     allDates = [date['orderDate'] for date in OrderCreate.objects.order_by('orderDate').values('orderDate').distinct()]
     allOrders = OrderCreate.objects.all().values()
     fetchOrder = {}
@@ -170,7 +296,7 @@ def detailsEdit(request, id):
                         # convert string to date object
                         givenDate = dt.strptime(list(item.values())[2], "%Y-%m-%d")
                         delta =  (givenDate - today).days
-                        if delta > 0:
+                        if delta >= 0:
                             if delta < 20:
                                 priority = "High"
                             elif delta < 40:
@@ -268,7 +394,7 @@ def createOrder(request):
                         # convert string to date object
                         givenDate = dt.strptime(list(item.values())[1], "%Y-%m-%d")
                         delta =  (givenDate - today).days
-                        if delta > 0:
+                        if delta >= 0:
                             if delta < 20:
                                 priority = "High"
                             elif delta < 40:

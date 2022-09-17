@@ -20,10 +20,6 @@ class OrderCreate(models.Model):
     orderDate = models.DateField()
     priority = models.CharField(max_length=20, choices=priority_choices)
 
-    @property
-    def username(self):
-        return self.user.userName
-
 class TopDetail(models.Model):
     user = models.ForeignKey(Customer, on_delete=models.CASCADE)
     chest1 = models.IntegerField()
@@ -87,3 +83,6 @@ class BottomDetail(models.Model):
     def __str__(self):
         return self.user.userName
 
+class PendingDelivery(models.Model):
+    user = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    deliverDate = models.DateField()

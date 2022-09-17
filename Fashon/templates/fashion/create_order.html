@@ -37,14 +37,14 @@
                     <!-- CUSTOMER NAME FIELD -->
                     <div class="input-group" style="height: 50px;">
                         <span class="input-group-text" id="basic-addon1">👨‍💼</span>
-                        <input type="text" style="font-size: 20px;" class="form-control" id="userName"
+                        <input type="text" autocomplete=off style="font-size: 20px;" class="form-control" id="userName"
                             placeholder="Enter Customer Name Here" aria-describedby="basic-addon1">
                     </div>
 
                     <!-- DELIEVERY DATE FIELD -->
                     <div class="input-group datepicker" style="margin-top: 20px; height: 47px;">
                         <span class="input-group-text" id="basic-addon1">📅</span>
-                        <input type="text" style="width: 537px; font-size: 20px;" id="userDeliveryDate" name="date"
+                        <input type="text" style="width: 537px; font-size: 20px;" autocomplete=off id="userDeliveryDate" name="date"
                             placeholder=" Enter Final Delivery Date here">
                     </div>
                 </div>
@@ -364,6 +364,7 @@ left: 1000px; display: flex;" class="container">
             container: container,
             todayHighlight: true,
             autoclose: true,
+            minDate: 1,
         };
         date_input.datepicker(options);
     })

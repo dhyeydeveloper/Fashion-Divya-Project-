@@ -12,3 +12,5 @@ admin.site.register(TopDetail)
 admin.site.register(BottomDetail)
 
 admin.site.register(OrderCreate)
+
+admin.site.register(PendingDelivery)

@@ -27,6 +27,7 @@ urlpatterns = [
     path(r'type/', customerType, name="customerTypeUrl"),
     path(r'myCustomers/', allCustomerView, name="Customers"),
     path(r'pendingOrder/',pendingOrderHtml, name="pendingOrderView"),
+    path(r'pendingDelivery/',pendingDeliveryHtml, name="pendingDeliveryView"),
 
 # ALL REPATH API's
     re_path(r'login/', login, name='loginUrl'),
@@ -38,8 +39,12 @@ urlpatterns = [
     re_path(r'check/', customerCheck, name="checkUrl"),
     re_path(r'delete/', deleteCustomer, name="deleteUrl"),
     re_path(r'details_edit/(?P<id>\d{1,20})/', detailsEdit, name="detailsEditUrl"),
-    re_path(r'pendingOrderJs/',pendingOrder, name="pendingOrderUrl"),
     re_path(r'deleteOrder',deleteOrderView, name="deleteOrderUrl"),
-    re_path(r'pendingCreate',pendingOrderCreate, name="pendingPostUrl")
+    re_path(r'pendingOrderJs/',pendingOrder, name="pendingOrderUrl"),
+    re_path(r'pendingCreate',pendingOrderCreate, name="pendingPostUrl"),
+    re_path(r'pendingDeliveryCreate',deliveryCreate, name="deliveryPostUrl"),
+    re_path(r'pendingFilterDelivery',deliveryOrder, name="deliveryFetchUrl"),
+    re_path(r'deleteDelivery',deleteDeliveryOrderView, name="deleteDeliveryUrl"),
+    
 ]
 

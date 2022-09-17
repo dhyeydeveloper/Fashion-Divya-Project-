@@ -333,6 +333,9 @@
             url: "/pendingCreate/",
             method : 'POST',
             data:  {'id':id},
+            success: function(response){
+              alert('Order Not Created. Please check the date')
+            }
         });
   }
 </script>

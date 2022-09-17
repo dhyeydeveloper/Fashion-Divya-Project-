@@ -233,13 +233,22 @@
 <script rel="preload" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>
 <script>
     $(document).ready(function () {
+      var today = new Date();
+      var dd = String(today.getDate()).padStart(2, '0');
+      var mm = String(today.getMonth() + 1).padStart(2, '0');
+      var yyyy = today.getFullYear();
+
+      today = yyyy + '-' + mm + '-' + dd;
         var date_input = $('input[name="date"]'); //our date input has the name "date"
         var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+        
+        $('#userDeliveryDate').attr('min', today);
         var options = {
             format: 'dd/mm/yyyy',
             container: container,
             todayHighlight: true,
             autoclose: true,
+            minDate: 1,
         };
         date_input.datepicker(options);
     })
