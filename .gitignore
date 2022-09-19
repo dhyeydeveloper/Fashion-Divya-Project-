@@ -3,3 +3,4 @@ db
 test images
 test.html
 *.pyc
+*.txt

@@ -17,7 +17,6 @@ login.addEventListener("click",(e)=>{
                 }
                 else{
                     let failure=document.getElementById('failure');
-                    // success.classList.remove('show');
                     failure.classList.add('show');
                     $('#failure').show();
                 }

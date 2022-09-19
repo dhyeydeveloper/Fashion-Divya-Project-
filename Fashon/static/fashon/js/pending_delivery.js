@@ -52,7 +52,7 @@ function loadData(){
                     for (const customer of resp[date]) {
                         cnt+=1
                         if (cnt > 3){
-                            document.getElementById('CustomerCards'+date).style = ""
+                            document.getElementById('CustomerCards'+date).style = "height: 780px;"
                         }
                         if (cnt > 6){
                             document.getElementById('CustomerCards'+date).style = "height: 1170px;"
@@ -64,7 +64,8 @@ function loadData(){
                         </div>
                         <img src=http://127.0.0.1:8000/static/fashon/img/dress.png alt="image1" class="profile-icon" />
                         <div class="profile-position" style="margin:15px 0 0 10px">Mob: ${customer.user.userPhone}</div>
-                        <button class="button" style="margin-top: 14px;" onclick="orderDeliveryCreate(this.id); event.stopPropagation()" id="${customer.id}">Delivered</button>
+
+                        <button class="button-57" style="margin-top: 14px;" onclick="orderCancel(this.id); event.stopPropagation()" id="${customer.id}" role="button"><span class="text">Delivered</span><span>→</span></button>
                         <button style="margin-top: 7px; background: crimson;" class="button" onclick="orderCancel(this.id); event.stopPropagation()" id="${customer.id}">Cancel</button>
                         </div>`
                     }
@@ -114,7 +115,7 @@ searchInput.addEventListener('input',()=>{
             document.getElementById('data').innerHTML = ""
             if (Object.keys(response).length > 0){
                 for (const date in response) {
-                
+
                     let day = date.slice(0,2)
                     let month = date.slice(3,5)
                     let year = date.slice(6,10)
@@ -154,12 +155,12 @@ searchInput.addEventListener('input',()=>{
                     for (const customer of response[date]) {
                         cnt+=1
                         if (cnt > 3){
-                            document.getElementById('CustomerCards'+date).style = ""
+                            document.getElementById('CustomerCards'+date).style = "height: 780px;"
                         }
                         if (cnt > 6){
                             document.getElementById('CustomerCards'+date).style = "height: 1170px;"
                         }
-                        document.getElementById('CustomerCards'+date).innerHTML += 
+
                         document.getElementById('CustomerCards'+date).innerHTML += 
                         `<div onclick="detailsID(this.id)" id="${customer.user.userPhone}" class="profile-card" style="background: linear-gradient(253.11deg, #FFFFFF 8.42%, #00317A 100%), linear-gradient(270deg, #001F8B 0%, #AB0000 100%), linear-gradient(180deg, #FF876C 0%, #005B83 42.5%, #79FFA7 100%), radial-gradient(100% 200% at 0% 0%, #FFFFFF 0%, #2400B4 100%), linear-gradient(180deg, #42FF00 0%, #7500AC 100%), linear-gradient(133.98deg, #F90000 30.43%, #0073B4 100%), radial-gradient(70.41% 100% at 50% 0%, #D5B300 0%, #2200AA 100%);
                         background-blend-mode: multiply, overlay, color-dodge, darken, difference, difference, normal;">
@@ -167,7 +168,7 @@ searchInput.addEventListener('input',()=>{
                         </div>
                         <img src=http://127.0.0.1:8000/static/fashon/img/dress.png alt="image1" class="profile-icon" />
                         <div class="profile-position" style="margin:15px 0 0 10px">Mob: ${customer.user.userPhone}</div>
-                        <button class="button" style="margin-top: 14px;" onclick="orderDeliveryCreate(this.id); event.stopPropagation()" id="${customer.id}">Delivered</button>
+                        <button class="button-57" style="margin-top: 14px;" onclick="orderCancel(this.id); event.stopPropagation()" id="${customer.id}" role="button"><span class="text">Delivered</span><span>→</span></button>
                         <button style="margin-top: 7px; background: crimson;" class="button" onclick="orderCancel(this.id); event.stopPropagation()" id="${customer.id}">Cancel</button>
                         </div>`
                     }
@@ -252,7 +253,7 @@ function getDate(){
                             for (const customer of response[date]) {
                                 cnt+=1
                                 if (cnt > 3){
-                                    document.getElementById('CustomerCards'+date).style = ""
+                                    document.getElementById('CustomerCards'+date).style = "height: 780px;"
                                 }
                                 if (cnt > 6){
                                     document.getElementById('CustomerCards'+date).style = "height: 1170px;"
@@ -264,7 +265,7 @@ function getDate(){
                                 </div>
                                 <img src=http://127.0.0.1:8000/static/fashon/img/dress.png alt="image1" class="profile-icon" />
                                 <div class="profile-position" style="margin:15px 0 0 10px">Mob: ${customer.user.userPhone}</div>
-                                <button class="button" style="margin-top: 14px;" onclick="orderDeliveryCreate(this.id); event.stopPropagation()" id="${customer.id}">Delivered</button>
+                                <button class="button-57" style="margin-top: 14px;" onclick="orderCancel(this.id); event.stopPropagation()" id="${customer.id}" role="button"><span class="text">Delivered</span><span>→</span></button>
                                 <button style="margin-top: 7px; background: crimson;" class="button" onclick="orderCancel(this.id); event.stopPropagation()" id="${customer.id}">Cancel</button>
                                 </div>`
                             }
@@ -308,10 +309,19 @@ function dateFormat(inputDate, format) {
 
 // Deleting Order data
 function orderCancel(id){
+    let li =  event.currentTarget.innerText[0];
+    let button = ''
+    if (li == "C"){
+        button = "cancel"; 
+    }
+    else if(li == 'D'){
+        button = "deliver";
+    }
+
     $.ajax({
         type: 'GET',
         url: "/deleteDelivery/",
-        data: {'id':id},
+        data: {'id':id, 'button':button},
         success: function(response){
             document.getElementById('data').innerHTML = ""
             if (Object.keys(response).length > 0){
@@ -356,7 +366,7 @@ function orderCancel(id){
                     for (const customer of response[date]) {
                         cnt+=1
                         if (cnt > 3){
-                            document.getElementById('CustomerCards'+date).style = ""
+                            document.getElementById('CustomerCards'+date).style = "height: 780px;"
                         }
                         if (cnt > 6){
                             document.getElementById('CustomerCards'+date).style = "height: 1170px;"
@@ -368,7 +378,7 @@ function orderCancel(id){
                         </div>
                         <img src=http://127.0.0.1:8000/static/fashon/img/dress.png alt="image1" class="profile-icon" />
                         <div class="profile-position" style="margin:15px 0 0 10px">Mob: ${customer.user.userPhone}</div>
-                        <button class="button" style="margin-top: 14px;" onclick="orderDeliveryCreate(this.id); event.stopPropagation()" id="${customer.id}">Delivered</button>
+                        <button class="button-57" style="margin-top: 14px;" onclick="orderCancel(this.id); event.stopPropagation()" id="${customer.id}" role="button"><span class="text">Delivered</span><span>→</span></button>
                         <button style="margin-top: 7px; background: crimson;" class="button" onclick="orderCancel(this.id); event.stopPropagation()" id="${customer.id}">Cancel</button>
                         </div>`
                     }

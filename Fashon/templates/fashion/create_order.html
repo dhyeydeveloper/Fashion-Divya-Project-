@@ -5,7 +5,7 @@
         href="{% url 'customerTypeUrl' %}">Create Order</a>
 </li>
 <li><a class="nav-link" href="{% url 'pendingOrderView' %}">Pending Orders</a></li>
-<li><a class="nav-link" href="#">Pending Delivery</a></li>
+<li><a class="nav-link" href="{% url 'pendingDeliveryView' %}" >Pending Delivery</a></li>
 <li><a class="nav-link" href="{% url 'Customers' %}">My Customers</a></li>
 {% endblock navpage %}
 

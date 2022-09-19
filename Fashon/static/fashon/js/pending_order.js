@@ -51,7 +51,7 @@ function loadData(){
                     for (const customer of resp[date]) {
                         cnt+=1
                         if (cnt > 3){
-                            document.getElementById('CustomerCards'+date).style = ""
+                            document.getElementById('CustomerCards'+date).style = "height: 780px;"
                         }
                         if (cnt > 6){
                             document.getElementById('CustomerCards'+date).style = "height: 1170px;"

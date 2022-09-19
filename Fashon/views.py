@@ -67,6 +67,7 @@ def deliveryOrder(request):
                         orders.pop('user_id')
                         orders['user'] = user[0] 
                         fetchOrder[fdDate] = [orders]
+
         return JsonResponse(fetchOrder, safe=False)
 
     allDates = [date['deliverDate'] for date in PendingDelivery.objects.order_by('deliverDate').values('deliverDate').distinct()]
@@ -92,7 +93,12 @@ def deliveryOrder(request):
 
 @login_required
 def deleteDeliveryOrderView(request):
+    buttonVal = request.GET.get('button')
     item = PendingDelivery.objects.get(id=request.GET.get('id'))
+    if buttonVal == "deliver":
+        if str(item.deliverDate) == str(item.user.userDeliveryDate):
+            Customer.objects.filter(id= item.user.id).update(userDeliveryDate = "2001-01-01", userAdvance = 0)
+
     item.delete()
     allDates = [date['deliverDate'] for date in PendingDelivery.objects.order_by('deliverDate').values('deliverDate').distinct()]
     allOrders = PendingDelivery.objects.all().values()
