@@ -1,10 +1,11 @@
 let login = document.getElementById('login')
+let failure=document.getElementById('failure');
 
 login.addEventListener("click",(e)=>{
     var data = {};
     let username = document.getElementById('username').value
     let password = document.getElementById('password').value
-    if (username.length !== null && password.length !== null){
+    if (username.length != "" && password.length != ""){
         data.username = username
         data.password = password
         $.ajax({
@@ -16,20 +17,27 @@ login.addEventListener("click",(e)=>{
                     window.location.href = "/home/"
                 }
                 else{
-                    let failure=document.getElementById('failure');
-                    failure.classList.add('show');
-                    $('#failure').show();
+                    failure.style.display = "block"
+                    setTimeout(() => {
+                        failure.style.display = "none"  
+                    }, 4000);
                 }
             }
         });
     }
     else{
-        let failure=document.getElementById('failure');
-        // success.classList.remove('show');
-        failure.classList.add('show');
-        $('#failure').show();
+        failure.style.display = "block"
+        setTimeout(() => {
+            failure.style.display = "none"  
+        }, 4000);
     }
     e.preventDefault();
 })
+
+let close = document.getElementById('close')
+close.addEventListener('click',()=>{
+    failure.style.display = "none"   
+})
+
 
 

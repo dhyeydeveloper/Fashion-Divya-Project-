@@ -9,11 +9,9 @@
     integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 </head>
 <body style="background-image:url('/static/fashon/img/bg2.jpg'); background-position: initial; background-size: cover;">
-    <div class="alert alert-danger alert-dismissible fade" role="alert" id="failure">
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" id="failure" style="display: none;">
         <strong>Invalid Credentials!</strong> Please re-verify your Username and Password.
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
+        <button type="button" id="close" class="btn-close"></button>
     </div>
 
     <div class="container" style="transform: scale(1.04);">
