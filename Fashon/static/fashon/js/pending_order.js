@@ -16,7 +16,9 @@ function loadData(){
                     let month = date.slice(3,5)
                     let year = date.slice(6,10)
 
-                    if (dd > day && mm == month && yyyy == year){
+                    user_date = year + "-" + month + "-" + day
+                    today_date = yyyy + "-" + mm + "-" + dd
+                    if (user_date < today_date){
                         document.getElementById('data').innerHTML +=
                         `<div id=${date}><button style="width: 1208px; margin: 0 0 0 30px; height: 54px; font-size: 20px; color: antiquewhite; background: crimson; font-weight: 500;">${date}</button>
                         <br>
@@ -26,7 +28,7 @@ function loadData(){
                         </div>
                         <br>`
                     }
-                    else if (dd == day && mm == month && yyyy == year){
+                    else if (user_date == today_date){
                         document.getElementById('data').innerHTML +=
                         `<div id=${date}><button style="width: 1208px; margin: 0 0 0 30px; height: 54px; font-size: 20px; color: antiquewhite; background: #F95700; font-weight: 500;">${date}</button>
                         <br>
@@ -100,7 +102,9 @@ searchInput.addEventListener('input',()=>{
                     let month = date.slice(3,5)
                     let year = date.slice(6,10)
     
-                    if (dd > day && mm == month && yyyy == year){
+                    user_date = year + "-" + month + "-" + day
+                    today_date = yyyy + "-" + mm + "-" + dd
+                    if (user_date < today_date){
                         document.getElementById('data').innerHTML +=
                         `<div id=${date}><button style="width: 1208px; margin: 0 0 0 30px; height: 54px; font-size: 20px; color: antiquewhite; background: crimson; font-weight: 500;">${date}</button>
                         <br>
@@ -110,7 +114,7 @@ searchInput.addEventListener('input',()=>{
                         </div>
                         <br>`
                     }
-                    else if (dd == day && mm == month && yyyy == year){
+                    else if (user_date == today_date){
                         document.getElementById('data').innerHTML +=
                         `<div id=${date}><button style="width: 1208px; margin: 0 0 0 30px; height: 54px; font-size: 20px; color: antiquewhite; background: #F95700; font-weight: 500;">${date}</button>
                         <br>
@@ -191,7 +195,9 @@ function orderCancel(id){
                     let month = date.slice(3,5)
                     let year = date.slice(6,10)
     
-                    if (dd > day && mm == month && yyyy == year){
+                    user_date = year + "-" + month + "-" + day
+                    today_date = yyyy + "-" + mm + "-" + dd
+                    if (user_date < today_date){
                         document.getElementById('data').innerHTML +=
                         `<div id=${date}><button style="width: 1208px; margin: 0 0 0 30px; height: 54px; font-size: 20px; color: antiquewhite; background: crimson; font-weight: 500;">${date}</button>
                         <br>
@@ -201,7 +207,7 @@ function orderCancel(id){
                         </div>
                         <br>`
                     }
-                    else if (dd == day && mm == month && yyyy == year){
+                    else if (user_date == today_date){
                         document.getElementById('data').innerHTML +=
                         `<div id=${date}><button style="width: 1208px; margin: 0 0 0 30px; height: 54px; font-size: 20px; color: antiquewhite; background: #F95700; font-weight: 500;">${date}</button>
                         <br>
@@ -288,7 +294,9 @@ function getDate(){
                             let month = date.slice(3,5)
                             let year = date.slice(6,10)
             
-                            if (dd > day && mm == month && yyyy == year){
+                            user_date = year + "-" + month + "-" + day
+                            today_date = yyyy + "-" + mm + "-" + dd
+                            if (user_date < today_date){
                                 document.getElementById('data').innerHTML +=
                                 `<div id=${date}><button style="width: 1208px; margin: 0 0 0 30px; height: 54px; font-size: 20px; color: antiquewhite; background: crimson; font-weight: 500;">${date}</button>
                                 <br>
@@ -298,7 +306,7 @@ function getDate(){
                                 </div>
                                 <br>`
                             }
-                            else if (dd == day && mm == month && yyyy == year){
+                            else if (user_date == today_date){
                                 document.getElementById('data').innerHTML +=
                                 `<div id=${date}><button style="width: 1208px; margin: 0 0 0 30px; height: 54px; font-size: 20px; color: antiquewhite; background: #F95700; font-weight: 500;">${date}</button>
                                 <br>
