@@ -64,7 +64,7 @@ function loadData(){
                         background-blend-mode: multiply, overlay, color-dodge, darken, difference, difference, normal;">
                         <div class="profile-name" style="margin-top:-7px; text-align: -webkit-center; width: 207px;">${customer.user.userName}
                         </div>
-                        <img src=http://127.0.0.1:8000/static/fashon/img/dress.png alt="image1" class="profile-icon" />
+                        <img src=https://${window.location.host}/static/img/dress.png alt="image1" class="profile-icon" />
                         <div class="profile-position" style="margin:15px 0 0 10px">Mob: ${customer.user.userPhone}</div>
 
                         <button class="button-57" style="margin-top: 14px;" onclick="orderCancel(this.id); event.stopPropagation()" id="${customer.id}" role="button"><span class="text">Delivered</span><span>→</span></button>
@@ -170,7 +170,7 @@ searchInput.addEventListener('input',()=>{
                         background-blend-mode: multiply, overlay, color-dodge, darken, difference, difference, normal;">
                         <div class="profile-name" style="margin-top:-7px; text-align: -webkit-center; width: 207px;">${customer.user.userName}
                         </div>
-                        <img src=http://127.0.0.1:8000/static/fashon/img/dress.png alt="image1" class="profile-icon" />
+                        <img src=https://${window.location.host}/static/img/dress.png alt="image1" class="profile-icon" />
                         <div class="profile-position" style="margin:15px 0 0 10px">Mob: ${customer.user.userPhone}</div>
                         <button class="button-57" style="margin-top: 14px;" onclick="orderCancel(this.id); event.stopPropagation()" id="${customer.id}" role="button"><span class="text">Delivered</span><span>→</span></button>
                         <button style="margin-top: 7px; background: crimson;" class="button" onclick="orderCancel(this.id); event.stopPropagation()" id="${customer.id}">Cancel</button>
@@ -269,7 +269,7 @@ function getDate(){
                                 background-blend-mode: multiply, overlay, color-dodge, darken, difference, difference, normal;">
                                 <div class="profile-name" style="margin-top:-7px; text-align: -webkit-center; width: 207px;">${customer.user.userName}
                                 </div>
-                                <img src=http://127.0.0.1:8000/static/fashon/img/dress.png alt="image1" class="profile-icon" />
+                                <img src=https://${window.location.host}/static/img/dress.png alt="image1" class="profile-icon" />
                                 <div class="profile-position" style="margin:15px 0 0 10px">Mob: ${customer.user.userPhone}</div>
                                 <button class="button-57" style="margin-top: 14px;" onclick="orderCancel(this.id); event.stopPropagation()" id="${customer.id}" role="button"><span class="text">Delivered</span><span>→</span></button>
                                 <button style="margin-top: 7px; background: crimson;" class="button" onclick="orderCancel(this.id); event.stopPropagation()" id="${customer.id}">Cancel</button>
@@ -326,7 +326,7 @@ function orderCancel(id){
 
     $.ajax({
         type: 'GET',
-        url: "/deleteDelivery/",
+        url: "/removeDelivery/",
         data: {'id':id, 'button':button},
         success: function(response){
             document.getElementById('data').innerHTML = ""
@@ -384,7 +384,7 @@ function orderCancel(id){
                         background-blend-mode: multiply, overlay, color-dodge, darken, difference, difference, normal;">
                         <div class="profile-name" style="margin-top:-7px; text-align: -webkit-center; width: 207px;">${customer.user.userName}
                         </div>
-                        <img src=http://127.0.0.1:8000/static/fashon/img/dress.png alt="image1" class="profile-icon" />
+                        <img src=https://${window.location.host}/static/img/dress.png alt="image1" class="profile-icon" />
                         <div class="profile-position" style="margin:15px 0 0 10px">Mob: ${customer.user.userPhone}</div>
                         <button class="button-57" style="margin-top: 14px;" onclick="orderCancel(this.id); event.stopPropagation()" id="${customer.id}" role="button"><span class="text">Delivered</span><span>→</span></button>
                         <button style="margin-top: 7px; background: crimson;" class="button" onclick="orderCancel(this.id); event.stopPropagation()" id="${customer.id}">Cancel</button>

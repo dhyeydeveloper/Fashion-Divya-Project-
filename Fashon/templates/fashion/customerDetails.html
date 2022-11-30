@@ -9,7 +9,7 @@
 
 
 {% block page %}
-<link rel="stylesheet" href="{% static 'fashon/css/details.css' %}">
+<link rel="stylesheet" href="{% static 'css/details.css' %}">
 <div id="customerDetails" class="container">
 <!--========================================================= CUSTOMER DETAILS STARTS=========================================================================== -->
     <div class="col-md-12">
@@ -52,7 +52,7 @@
             </div>
         </div> 
         <div class="col-md-3 border-right">
-            <div class="d-flex flex-column align-items-center"><img class="rounded-circle" style="width: 150px; height: 150px;" src="{% static 'fashon/img/lady.jpg' %}">
+            <div class="d-flex flex-column align-items-center"><img class="rounded-circle" style="width: 150px; height: 150px;" src="{% static 'img/lady.jpg' %}">
             </div>
             <hr style="margin: 10px 0;">
               <div class="col-sm-12">
@@ -254,9 +254,7 @@
 <script>
   let edit = document.getElementById("edit");
   edit.addEventListener('click',(e)=>{
-    link = window.location.href.toString()
-    let splitURL=link.toString().split("/");
-    id = splitURL[splitURL.length -2]
+    id = window.location.pathname.toString().split("/").slice(-1)
     window.location.href = '/details_edit/' + id
   })
 </script>
@@ -294,15 +292,13 @@
 
     let deleteItem = document.getElementById('delete-confirm');
     deleteItem.addEventListener('click',()=>{
-      link = window.location.href.toString()
-      let splitURL=link.toString().split("/");
-      id = splitURL[splitURL.length -2]
+      id = window.location.pathname.toString().split("/").slice(-1)[0];
       $.ajax({
             url: "/delete/",
             method : 'GET',
             data: id,
             success: function(resp){
-                window.location.href = "/type/"
+                window.location.href = "/type"
             }
         });
     })
@@ -324,9 +320,7 @@
 
 <script>
   function orderCreate(){
-    link = window.location.href.toString()
-    let splitURL=link.toString().split("/");
-    id = splitURL[splitURL.length -2]
+    id = window.location.pathname.toString().split("/").slice("-1")[0];
     $.ajax({
             url: "/pendingCreate/",
             method : 'POST',

@@ -11,7 +11,7 @@
 <link href='https://fonts.googleapis.com/css?family=Alegreya Sans SC' rel='stylesheet'>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 
-<link rel="stylesheet" href="{% static 'fashon/css/customers.css' %}">
+<link rel="stylesheet" href="{% static 'css/customers.css' %}">
 
 <div style="margin-top: -10px; background-color: lavender; height: 850px;" class="container">
 
@@ -35,7 +35,7 @@
         {% for customer in customers %}
             <div onclick="detailsID(this.id)" id="{{customer.userPhone}}" style="background: linear-gradient(121deg, #FF0000 0%, #ff0000 100%), linear-gradient(140deg, #ff5454 27%, #223DCB 100%), linear-gradient(140deg, #4E9C51 0%, #001AFF 72%), linear-gradient(64deg, #6e00ff 0%, #0038FF 100%), radial-gradient(52% 101.79% at 50% 50%, #707300 0%, #ff0000 100%), radial-gradient(100% 100% at 70% 0%, #7A3B00 0%, #1DAC92 100%);
             background-blend-mode: overlay, overlay, difference, difference, color-burn, exclusion;" class="profile-card">
-              <img src="{% static 'fashon/img/lady.jpg' %}" alt="image1" class="profile-icon" />
+              <img src="{% static 'img/lady.jpg' %}" alt="image1" class="profile-icon" />
               <div class="profile-name">{{customer.userName}}</div>
               <div class="profile-position">Mob: {{customer.userPhone}}</div>
               <button class="button" onclick="deleteID(this.id); event.stopPropagation()" id="{{customer.id}}">Delete</button>
@@ -49,7 +49,7 @@
 
 </div>
 
-<script src="{% static 'fashon/js/customers.js' %}"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="{% static 'js/customers.js' %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
 {% endblock page %}

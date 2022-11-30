@@ -242,7 +242,7 @@ def pendingOrder(request):
 
 @login_required
 def deleteOrderView(request):
-    item = OrderCreate.objects.get(id=request.GET.get('id'))
+    item = OrderCreate.objects.filter(id=request.GET.get('id'))
     item.delete()
     allDates = [date['orderDate'] for date in OrderCreate.objects.order_by('orderDate').values('orderDate').distinct()]
     allOrders = OrderCreate.objects.all().values()
@@ -367,7 +367,7 @@ def logoutView(request):
 def login(request):
     if request.method == "POST":
         data = request.POST
-        user = authenticate(username=data['username'], password=data['password'])
+        user = authenticate(username=data.get('username',None), password=data.get('password',None))
         if user is not None:
             auth_login(request, user)
             return HttpResponse('success')

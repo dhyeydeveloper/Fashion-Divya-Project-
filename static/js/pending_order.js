@@ -63,7 +63,7 @@ function loadData(){
                     background-blend-mode: overlay, color-burn, screen, overlay, difference, difference, normal;">
                         <div class="profile-name" style="margin-top:-7px; text-align: -webkit-center; width: 207px;">${customer.user.userName}
                         </div>
-                        <img src=http://127.0.0.1:8000/static/fashon/img/dress.png alt="image1" class="profile-icon" />
+                        <img src=https://${window.location.host}/static/img/dress.png alt="image1" class="profile-icon" />
                         <div class="profile-position" style="margin:15px 0 0 10px">Mob: ${customer.user.userPhone}</div>
                         <div class="profile-position" style="margin-bottom:-15px">Priority: ${customer.priority}</div>
                         <button class="button" onclick="orderDeliveryCreate(this.id); event.stopPropagation()" id="${customer.id}">Add to Delivery</button>
@@ -149,7 +149,7 @@ searchInput.addEventListener('input',()=>{
                         background-blend-mode: overlay, color-burn, screen, overlay, difference, difference, normal;">
                         <div class="profile-name" style="margin-top:-7px; text-align: -webkit-center; width: 207px;">${customer.user.userName}
                         </div>
-                        <img src=http://127.0.0.1:8000/static/fashon/img/dress.png alt="image1" class="profile-icon" />
+                        <img src=https://${window.location.host}/static/img/dress.png alt="image1" class="profile-icon" />
                         <div class="profile-position" style="margin:15px 0 0 10px">Mob: ${customer.user.userPhone}</div>
                         <div class="profile-position" style="margin-bottom:-15px">Priority: ${customer.priority}</div>
                         <button class="button" onclick="orderDeliveryCreate(this.id); event.stopPropagation()" id="${customer.id}">Add to Delivery</button>
@@ -184,7 +184,7 @@ function detailsID(customer){
 function orderCancel(id){
     $.ajax({
         type: 'GET',
-        url: "/deleteOrder/",
+        url: "/cancelOrder/",
         data: {'id':id},
         success: function(response){
             document.getElementById('data').innerHTML = ""
@@ -242,7 +242,7 @@ function orderCancel(id){
                         background-blend-mode: overlay, color-burn, screen, overlay, difference, difference, normal;">
                         <div class="profile-name" style="margin-top:-7px; text-align: -webkit-center; width: 207px;">${customer.user.userName}
                         </div>
-                        <img src=http://127.0.0.1:8000/static/fashon/img/dress.png alt="image1" class="profile-icon" />
+                        <img src=https://${window.location.host}/static/img/dress.png alt="image1" class="profile-icon" />
                         <div class="profile-position" style="margin:15px 0 0 10px">Mob: ${customer.user.userPhone}</div>
                         <div class="profile-position" style="margin-bottom:-15px">Priority: ${customer.priority}</div>
                         <button class="button" onclick="orderDeliveryCreate(this.id); event.stopPropagation()" id="${customer.id}">Add to Delivery</button>
@@ -341,7 +341,7 @@ function getDate(){
                                 background-blend-mode: overlay, color-burn, screen, overlay, difference, difference, normal;">
                                 <div class="profile-name" style="margin-top:-7px; text-align: -webkit-center; width: 207px;">${customer.user.userName}
                                 </div>
-                                <img src=http://127.0.0.1:8000/static/fashon/img/dress.png alt="image1" class="profile-icon" />
+                                <img src=https://${window.location.host}/static/img/dress.png alt="image1" class="profile-icon" />
                                 <div class="profile-position" style="margin:15px 0 0 10px">Mob: ${customer.user.userPhone}</div>
                                 <div class="profile-position" style="margin-bottom:-15px">Priority: ${customer.priority}</div>
                                 <button class="button" onclick="orderDeliveryCreate(this.id); event.stopPropagation()" id="${customer.id}">Add to Delivery</button>

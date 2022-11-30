@@ -9,7 +9,7 @@ login.addEventListener("click",(e)=>{
         data.username = username
         data.password = password
         $.ajax({
-            url: "{% url 'loginUrl' %}",
+            url: "/login/",
             method : 'POST',
             data: data,
             success: function(resp){

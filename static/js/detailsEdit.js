@@ -31,9 +31,7 @@ function postitem(button) {
   let userData = {};
   let topData = {};
   let bottomData = {};
-  link = window.location.href.toString()
-  let splitURL=link.toString().split("/");
-  id = splitURL[splitURL.length -2]
+  id = window.location.pathname.toString().split("/").slice(-1)
 
   $('input').each(function(index){ 
       let key = $(this)[0].id;
@@ -105,7 +103,7 @@ function postitem(button) {
 
     if (Object.keys(userData).length == 4 && Object.keys(topData).length == 25 && Object.keys(bottomData).length == 10){
         $.ajax({
-            url: "/details_edit/"+id+"/",
+            url: "/details_edit/"+id,
             method : 'POST',
             data:  JSON.stringify({'userData':userData, 'topData':topData,'bottomData':bottomData,'button':button}),
             success: function(resp){
